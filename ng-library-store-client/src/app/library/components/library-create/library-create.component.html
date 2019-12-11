@@ -1,0 +1,25 @@
+<form #f="ngForm">
+    <mat-card class="form-container-card">
+        <mat-card-header>
+            <mat-card-title>Create Library</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="form-container" [ngClass]="routeAnimationsElements">
+                <mat-form-field>
+                    <input matInput placeholder="Name" name="name" [(ngModel)]="library.name" #name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required/>
+                    <mat-error *ngIf="f.submitted && name.invalid && name.errors.required">Library Name is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <textarea matInput placeholder="Address" name="address" [(ngModel)]="library.address" #address="ngModel" [ngClass]="{ 'is-invalid': f.submitted && address.invalid }" required></textarea>
+                    <mat-error *ngIf="f.submitted && address.invalid && address.errors.required">Library Address is required</mat-error>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button type="submit" mat-stroked-button color="primary" (click)="handleSaveClick(f)">SAVE</button>
+            <button type="reset" mat-stroked-button color="warn" (click)="handleResetClick(f)">RESET</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
+<app-loader *ngIf="loading$ | async"></app-loader>

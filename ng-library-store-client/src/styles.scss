@@ -1,1 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~ngx-toastr/toastr';
+
+body{
+    font-family: 'Roboto', 'Noto', sans-serif;
+    background-color: #F5F5F5;
+}
+
+/* Scroll */
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgba(#607d8b, .4);
+}
+
+/* Cards */
+
+mat-card {
+    box-shadow: none !important;
+    border-radius: 1px !important;
+}
+
+.mat-card-header-text {
+    margin: 0px 8px !important;
+}
+
+/* Buttons */
+
+button {
+    cursor: pointer !important;
+}
+
+button.mat-stroked-button {
+    min-width: 85px !important;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+    line-height: 34px !important;
+}
+
+/* Toastr */
+
+.toast-container .ngx-toastr {
+    box-shadow: none !important;
+    border-radius: 2px !important;
+    background-size: 20px !important;
+    font-size: 14px !important;
+}
+
+.toast-title {
+    margin-bottom: 2px !important;
+}
+
+.toast-success {
+    background-color: #009669ed !important;
+}
+
+/* Alert */
+
+.alert {
+    border-radius: 1px !important;
+    border-width: 0px !important;
+}
+
+/* Table */
+
+tr.mat-footer-row, tr.mat-row {
+    height: 44px !important;
+}

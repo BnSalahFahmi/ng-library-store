@@ -1,0 +1,44 @@
+<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" [ngClass]="routeAnimationsElements">
+    <ng-container matColumnDef="select">
+        <th class="with-fixed-width" mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+        </th>
+        <td class="with-fixed-width" mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th class="with-fixed-width" mat-header-cell *matHeaderCellDef> Delete</th>
+        <td class="with-fixed-width" mat-cell *matCellDef="let element">
+            <button mat-icon-button aria-label="delete icon"
+                (click)="handleDeleteClick(element)">
+                <mat-icon [ngStyle]="{'color': '#9E9E9E'}" aria-hidden="false" aria-label="Example delete icon">delete
+                </mat-icon>
+            </button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row>
+        <div class="empty-data">
+            <span>No Data Found</span>
+        </div>
+    </tr>
+</table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+<div class="empty-data" *ngIf="!(libraries$ | async)">
+    <span>No Data Found</span>
+</div>

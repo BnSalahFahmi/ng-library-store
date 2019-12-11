@@ -1,0 +1,30 @@
+<mat-card class="form-container-card">
+    <mat-card-header>
+        <mat-card-title>Libraries</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div *ngIf="error$ | async as error" class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <mat-icon [ngStyle]="{'color': '#9E9E9E'}" aria-hidden="false" aria-label="clear icon">clear</mat-icon>
+            </button>
+            <mat-icon [ngStyle]="{'color': '#EF5350'}" aria-hidden="false" aria-label="highlight_off icon">highlight_off</mat-icon>
+            {{error}}
+        </div>
+        <mat-button-toggle-group name="view" class="pull-right margin-bottom" [value]="toggle"
+            (change)="toggleView($event)">
+            <mat-button-toggle [value]="true">
+                <mat-icon [ngStyle]="{'color': '#607D8B'}" aria-hidden="false" aria-label="menu icon">menu</mat-icon>
+            </mat-button-toggle>
+            <mat-button-toggle #listView [value]="false">
+                <mat-icon [ngStyle]="{'color': '#607D8B'}" aria-hidden="false" aria-label="apps icon">apps</mat-icon>
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+        <span class="pull-right margin-bottom margin-right">
+            <hr class="vertical-hr"></span>
+        <button class="pull-right margin-bottom margin-right" mat-stroked-button color="primary"
+            routerLink="../create">Add Library</button>
+        <library-list *ngIf="toggle"></library-list>
+        <library-grid *ngIf="!toggle"></library-grid>
+    </mat-card-content>
+</mat-card>
+<app-loader *ngIf="loading$ | async"></app-loader>

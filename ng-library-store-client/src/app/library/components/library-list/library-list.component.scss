@@ -1,0 +1,44 @@
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.mat-elevation-z8 {
+    box-shadow: none !important;
+    border: 1px solid #eee !important;
+}
+
+.mat-elevation-z8 {
+    box-shadow: 0 -2px 0px -5px rgba(0,0,0,.2), 0 0px 0px 0px rgba(0,0,0,.14), 0 3px 6px 1px rgba(0,0,0,.12);
+}
+  
+th.with-fixed-width, td.with-fixed-width {
+    overflow: hidden;
+    width: 50px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+  
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+  
+td, th {
+    width: 25%;
+}
+
+.empty-data {
+    height: 30px;
+    padding-top: 60px;
+
+    span {
+        width: 100%;
+        text-align: center;
+        position: absolute;
+    }
+}
