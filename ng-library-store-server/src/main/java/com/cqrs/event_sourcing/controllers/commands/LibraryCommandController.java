@@ -24,4 +24,9 @@ public class LibraryCommandController {
         return libraryCommandService.createLibrary(libraryDTO);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public CompletableFuture<String> deleteLibrary(@PathVariable String id){
+        return libraryCommandService.deleteLibrary(id);
+    }
+
 }

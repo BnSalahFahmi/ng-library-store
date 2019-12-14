@@ -1,6 +1,7 @@
 package com.cqrs.event_sourcing.services.commands;
 
 import com.cqrs.event_sourcing.commands.CreateLibraryCommand;
+import com.cqrs.event_sourcing.commands.DeleteLibraryCommand;
 import com.cqrs.event_sourcing.dto.LibraryDTO;
 import com.cqrs.event_sourcing.providers.RandomIdProvider;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -20,6 +21,12 @@ public class LibraryCommandServiceImpl implements LibraryCommandService {
     @Override
     public CompletableFuture<String> createLibrary(LibraryDTO libraryDTO) {
         CreateLibraryCommand command = new CreateLibraryCommand(RandomIdProvider.generateRandomUUID().toString(), libraryDTO.getName(), libraryDTO.getAddress());
+        return commandGateway.send(command);
+    }
+
+    @Override
+    public CompletableFuture<String> deleteLibrary(String libraryId) {
+        DeleteLibraryCommand command = new DeleteLibraryCommand(libraryId);
         return commandGateway.send(command);
     }
 

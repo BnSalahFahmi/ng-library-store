@@ -50,4 +50,23 @@ export class LibraryEffects {
             )
         )
     );
+
+    DeleteLibraryEffect$: Observable<Action> = createEffect(() =>
+        this.actions$.pipe(
+            ofType(libraryActions.deleteLibrary),
+            mergeMap(action =>
+                this.libraryService.deleteLibrary(action.libraryId)
+                    .pipe(
+                        map(() => {
+                            this.toastrService.success('Library Deleted Successfully', 'Success');
+                            return libraryActions.loadLibraries({});
+                        }),
+                        catchError((error: Error) => {
+                            this.toastrService.error(error.message, 'Error');
+                            return of(libraryActions.deleteLibraryFailure({ errorMessage: error.message }));
+                        })
+                    )
+            )
+        )
+    );
 }

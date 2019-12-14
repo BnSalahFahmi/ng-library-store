@@ -23,7 +23,7 @@
         <th class="with-fixed-width" mat-header-cell *matHeaderCellDef> Delete</th>
         <td class="with-fixed-width" mat-cell *matCellDef="let element">
             <button mat-icon-button aria-label="delete icon"
-                (click)="handleDeleteClick(element)">
+                (click)="handleDeleteClick(element.id)">
                 <mat-icon [ngStyle]="{'color': '#9E9E9E'}" aria-hidden="false" aria-label="Example delete icon">delete
                 </mat-icon>
             </button>

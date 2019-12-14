@@ -2,6 +2,7 @@ package com.cqrs.event_sourcing.projections;
 
 import com.cqrs.event_sourcing.entities.Library;
 import com.cqrs.event_sourcing.events.LibraryCreatedEvent;
+import com.cqrs.event_sourcing.events.LibraryDeletedEvent;
 import com.cqrs.event_sourcing.queries.GetLibrariesQuery;
 import com.cqrs.event_sourcing.repositories.LibraryRepository;
 import org.axonframework.eventhandling.EventHandler;
@@ -30,6 +31,12 @@ public class LibraryProjection {
         logger.debug("About to dispatch a new command to create a new library {}", event.getLibraryId());
         Library library = new Library(event.getLibraryId() ,event.getName(), event.getAddress());
         libraryRepository.save(library);
+    }
+
+    @EventHandler
+    void on(LibraryDeletedEvent event) {
+        logger.debug("About to dispatch a new command to delete a library {}", event.getLibraryId());
+        libraryRepository.deleteById(event.getLibraryId());
     }
 
     @QueryHandler

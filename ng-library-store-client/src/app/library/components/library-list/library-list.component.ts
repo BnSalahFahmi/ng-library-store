@@ -61,12 +61,8 @@ export class LibraryListComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
-  handleDeleteClick(library: Library) {
-    // TODO
-  }
-
-  handleDeleteSelectedClick() {
-    // TODO
+  handleDeleteClick(id: string) {
+    this.store.dispatch(libraryActions.deleteLibrary({libraryId: id}));
   }
 
 }

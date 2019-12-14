@@ -31,3 +31,19 @@ export const createLibraryFailure = createAction(
     props<{ errorMessage: string }>()
 );
 
+export const deleteLibrary = createAction(
+    '[Library API] Delete Library',
+    props<{libraryId: string}>()
+);
+
+export const deleteLibrarySuccess = createAction(
+    '[Library API] Delete Library Success',
+    props<{}>()
+);
+
+export const deleteLibraryFailure = createAction(
+    '[Library API] Delete Library Failure',
+    props<{ errorMessage: string }>()
+);
+
+

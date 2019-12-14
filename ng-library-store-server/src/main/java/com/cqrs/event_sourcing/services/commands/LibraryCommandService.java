@@ -7,6 +7,7 @@ import java.util.concurrent.CompletableFuture;
 public interface LibraryCommandService {
 
     public CompletableFuture<String> createLibrary(LibraryDTO libraryDTO);
+    public CompletableFuture<String> deleteLibrary(String libraryId);
 
 }
 
