@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LibraryGridComponent } from './library-grid.component';
+import { BookRootComponent } from './book-root.component';
 
-describe('LibraryGridComponent', () => {
-  let component: LibraryGridComponent;
-  let fixture: ComponentFixture<LibraryGridComponent>;
+describe('BookRootComponent', () => {
+  let component: BookRootComponent;
+  let fixture: ComponentFixture<BookRootComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LibraryGridComponent ]
+      declarations: [ BookRootComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LibraryGridComponent);
+    fixture = TestBed.createComponent(BookRootComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

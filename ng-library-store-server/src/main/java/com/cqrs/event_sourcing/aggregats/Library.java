@@ -2,6 +2,7 @@ package com.cqrs.event_sourcing.aggregats;
 
 import com.cqrs.event_sourcing.commands.CreateLibraryCommand;
 import com.cqrs.event_sourcing.commands.DeleteLibraryCommand;
+import com.cqrs.event_sourcing.dto.BookDTO;
 import com.cqrs.event_sourcing.events.LibraryCreatedEvent;
 import com.cqrs.event_sourcing.events.LibraryDeletedEvent;
 import lombok.AllArgsConstructor;
@@ -11,6 +12,8 @@ import org.axonframework.common.Assert;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.spring.stereotype.Aggregate;
+
+import java.util.Set;
 
 import static org.axonframework.modelling.command.AggregateLifecycle.apply;
 
@@ -23,6 +26,7 @@ public class Library {
     private String id;
     private String name;
     private String address;
+    private Set<BookDTO> books;
 
     @SuppressWarnings("UnusedDeclaration")
     private Library() {
@@ -34,7 +38,7 @@ public class Library {
         Assert.notNull(createLibraryCommand.getName(), () -> "Library name should not be null");
         Assert.notNull(createLibraryCommand.getAddress(), () -> "Library address should not be null");
         apply(new LibraryCreatedEvent(
-                createLibraryCommand.getLibraryId(), createLibraryCommand.getName(), createLibraryCommand.getAddress()
+                createLibraryCommand.getLibraryId(), createLibraryCommand.getName(), createLibraryCommand.getAddress(), createLibraryCommand.getBooks()
         ));
     }
 

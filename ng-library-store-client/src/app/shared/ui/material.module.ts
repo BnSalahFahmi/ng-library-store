@@ -16,6 +16,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {NgModule} from '@angular/core';
 
@@ -39,7 +40,8 @@ import {NgModule} from '@angular/core';
     MatListModule,
     MatDialogModule,
     MatPaginatorModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ],
   exports: [
     MatButtonModule,
@@ -60,7 +62,8 @@ import {NgModule} from '@angular/core';
     MatListModule,
     MatDialogModule,
     MatPaginatorModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule
   ],
 })
 

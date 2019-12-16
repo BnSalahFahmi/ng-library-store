@@ -1,0 +1,49 @@
+<form #f="ngForm">
+    <mat-card class="form-container-card">
+        <mat-card-header>
+            <mat-card-title>Create Book</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="form-container" [ngClass]="routeAnimationsElements">
+
+                <mat-form-field>
+                    <input matInput placeholder="Name" name="name" [(ngModel)]="book.name" #name="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required />
+                </mat-form-field>
+
+                <mat-form-field>
+                    <textarea matInput placeholder="Description" name="description" [(ngModel)]="book.description"
+                        #address="ngModel" [ngClass]="{ 'is-invalid': f.submitted && address.invalid }"
+                        required></textarea>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input matInput placeholder="Image URL Path" name="img" [(ngModel)]="book.urlPhoto" #img="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && img.invalid }" required />
+                    <span matSuffix>
+                        <img class="preview" *ngIf="book.urlPhoto" [src]="book.urlPhoto" />
+                        <img class="preview" *ngIf="!book.urlPhoto"
+                            src="https://insidelatinamerica.net/wp-content/uploads/2018/01/noImg_2.jpg" />
+                    </span>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-select [formControl]="libraryCtrl" placeholder="Library" [multiple]="true" #multiSelect>
+                        <ngx-mat-select-search placeholderLabel="Find library..."
+                            noEntriesFoundLabel="'no matching library found'" [showToggleAllCheckbox]="true"
+                            (toggleAll)="toggleSelectAll($event)" [formControl]="librariesFilter">
+                        </ngx-mat-select-search>
+                        <mat-option *ngFor="let library of filteredLibraries | async" [value]="library">
+                            {{library.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button type="submit" mat-stroked-button color="primary" (click)="handleSaveClick(f)">SAVE</button>
+            <button type="reset" mat-stroked-button color="warn" (click)="handleResetClick(f)">RESET</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
+<app-loader *ngIf="loading$ | async"></app-loader>

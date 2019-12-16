@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatButtonToggleChange } from '@angular/material/button-toggle';
 import { Store } from '@ngrx/store';
 import * as fromLibrary from './../../reducers/library.reducer';
-import * as libraryActions from './../../actions/library.actions';
 import { Observable } from 'rxjs';
-import { selectErrorMessage, selectLibraries, selectLoading } from '../../selectors/library.selectors';
+import { selectErrorMessage, selectLoading } from '../../selectors/library.selectors';
 
 @Component({
   selector: 'app-library-root',
@@ -22,10 +20,6 @@ export class LibraryRootComponent implements OnInit {
   ngOnInit() {
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectErrorMessage);
-  }
-
-  toggleView(change: MatButtonToggleChange) {
-    this.toggle = change.value;
   }
 
 }

@@ -9,9 +9,10 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @Getter
-public class LibraryDTO {
+public class BookDTO {
     private String id;
     private String name;
-    private String address;
-    private Set<BookDTO> books;
+    private String description;
+    private String urlPhoto;
+    private Set<LibraryDTO> libraries;
 }

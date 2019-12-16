@@ -7,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   routeLinks: any[];
-  activeLinkIndex = 0;
+  activeLinkIndex = 1;
 
   constructor() {
     this.routeLinks = [
-      { label: 'Library', link: '/library/list' }
+      { label: 'Library', link: '/library/list' },
+      { label: 'Book', link: '/book/list'}
     ];
   }
 

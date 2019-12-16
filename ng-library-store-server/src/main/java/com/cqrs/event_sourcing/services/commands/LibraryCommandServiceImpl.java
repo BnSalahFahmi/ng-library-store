@@ -20,7 +20,7 @@ public class LibraryCommandServiceImpl implements LibraryCommandService {
 
     @Override
     public CompletableFuture<String> createLibrary(LibraryDTO libraryDTO) {
-        CreateLibraryCommand command = new CreateLibraryCommand(RandomIdProvider.generateRandomUUID().toString(), libraryDTO.getName(), libraryDTO.getAddress());
+        CreateLibraryCommand command = new CreateLibraryCommand(RandomIdProvider.generateRandomUUID().toString(), libraryDTO.getName(), libraryDTO.getAddress(), libraryDTO.getBooks());
         return commandGateway.send(command);
     }
 

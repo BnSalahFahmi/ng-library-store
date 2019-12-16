@@ -1,6 +1,6 @@
-package com.cqrs.event_sourcing.events;
+package com.cqrs.event_sourcing.commands;
 
-import com.cqrs.event_sourcing.dto.BookDTO;
+import com.cqrs.event_sourcing.dto.LibraryDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,11 +11,12 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LibraryCreatedEvent {
+public class CreateBookCommand {
 
     @TargetAggregateIdentifier
-    private String libraryId;
+    private String bookId;
     private String name;
-    private String address;
-    private Set<BookDTO> books;
+    private String description;
+    private String urlPhoto;
+    private Set<LibraryDTO> libraries;
 }

@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Component
@@ -29,7 +30,7 @@ public class LibraryProjection {
     @EventHandler
     void on(LibraryCreatedEvent event) {
         logger.debug("About to dispatch a new command to create a new library {}", event.getLibraryId());
-        Library library = new Library(event.getLibraryId() ,event.getName(), event.getAddress());
+        Library library = new Library(event.getLibraryId() ,event.getName(), event.getAddress(), new HashSet<>());
         libraryRepository.save(library);
     }
 

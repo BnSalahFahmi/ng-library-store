@@ -1,0 +1,27 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+  
+.form-container-card{
+    width: 60%;
+    margin-left: 20%;
+}
+
+.form-container > *{
+    width: 80%;
+    margin-left: 10%;
+}
+
+.preview {
+    width: 120px !important;
+    border: 2px solid #9E9E9E;
+    padding: 3px;
+    border-radius: 3px;
+    height: 120px;
+    margin-bottom: 5px;
+}
+
+:host ::ng-deep .mat-form-field-flex {
+    align-items: flex-end !important;
+}

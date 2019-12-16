@@ -11,7 +11,6 @@ import { LibraryService } from './services/library.service';
 import { LibraryEffects } from './effects/library.effects';
 import { reducer } from './reducers/library.reducer';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LibraryGridComponent } from './components/library-grid/library-grid.component';
 import { LibraryListComponent } from './components/library-list/library-list.component';
 import { LibraryRootComponent } from './containers/library-root/library-root.component';
 
@@ -20,7 +19,6 @@ import { LibraryRootComponent } from './containers/library-root/library-root.com
     LibraryCreateComponent,
     LibraryDetailComponent,
     LibraryListComponent,
-    LibraryGridComponent,
     LibraryRootComponent
   ],
   imports: [
@@ -36,7 +34,6 @@ import { LibraryRootComponent } from './containers/library-root/library-root.com
     LibraryCreateComponent,
     LibraryDetailComponent,
     LibraryListComponent,
-    LibraryGridComponent,
     LibraryRootComponent
   ],
   providers: [

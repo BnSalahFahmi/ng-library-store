@@ -1,0 +1,35 @@
+
+.pull-right {
+    float: right;
+}
+
+.margin-bottom {
+    margin-bottom: 20px;
+}
+
+.margin-right {
+    margin-right: 10px;
+}
+
+.add-book-card {
+    border: 1px solid #eee !important;
+    height: 260px;
+    text-align: center;
+    vertical-align: middle;
+    mat-icon {
+        color: rgb(158, 158, 158);
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        vertical-align: middle;
+        cursor: pointer;
+        font-size: 220px;
+        outline: none !important;
+    }
+}
+
+.wrapper:hover mat-icon{
+    color: #00BCD4 !important;
+    transition: 0.9s;
+    transform: rotateY(180deg);
+}

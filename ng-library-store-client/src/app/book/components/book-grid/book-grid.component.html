@@ -1,23 +1,22 @@
-<div class="libraries-container row col-lg-12" *ngIf="(libraries$ | async) as libraries" [ngClass]="routeAnimationsElements">
-    <div *ngFor="let library of libraries" class="col-lg-3 col-md-3 col-sm-3">
-        <mat-card class="library-card" (click)="ViewChannel(channel.id)">
+<div class="books-container row col-lg-12" *ngIf="(books$ | async) as books" [ngClass]="routeAnimationsElements">
+    <div *ngFor="let book of books" class="col-lg-3 col-md-3 col-sm-3">
+        <mat-card class="book-card" (click)="handleViewClick(book)">
             <mat-card-header>
                 <mat-card-title>
-                    {{library.name}}
+                    {{book.name}}
                     <span class="action-delete">
                         <button mat-icon-button click="handleDeleteClick()"><mat-icon [ngStyle]="{'color': '#9E9E9E'}" aria-hidden="false" aria-label="delete icon">delete</mat-icon></button>
                     </span>
                 </mat-card-title>
-                <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
             </mat-card-header>
             <mat-card-content>
                 <p>
-                    {{library.address}}
+                    {{book.description}}
                 </p>
             </mat-card-content>
         </mat-card>
     </div>
 </div>
-<div class="empty-data" *ngIf="!(libraries$ | async)">
+<div class="empty-data" *ngIf="!(books$ | async)">
     <span>No Data Found</span>
 </div>
