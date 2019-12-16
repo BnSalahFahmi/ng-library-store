@@ -12,6 +12,10 @@ export class BookService {
 
     }
 
+    public fetchBooks(): Observable<Book[]> {
+        return this.http.get<Book[]>(this.baseUrl + '/books');
+    }
+
     public createBook(book: Book): Observable<Book> {
         let headers = new HttpHeaders();
         headers = headers.set('Content-Type', 'application/json; charset=utf-8');

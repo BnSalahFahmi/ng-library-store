@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import * as fromBook from './../../reducers/book.reducer';
+import * as fromBook from '../../reducers/book.reducer';
 import { Book } from '../../models/book.model';
 import { ROUTE_ANIMATIONS_ELEMENTS } from 'src/app/shared/animations/route.animations';
+import * as bookActions from './../../actions/book.actions';
 import { Store } from '@ngrx/store';
 import { selectBooks } from '../../selectors/book.selectors';
 import { Observable } from 'rxjs';
@@ -17,7 +18,9 @@ export class BookGridComponent implements OnInit {
 
   books$: Observable<Book[]>;
 
-  constructor(private store: Store<fromBook.State>) { }
+  constructor(private store: Store<fromBook.State>) {
+    this.store.dispatch(bookActions.loadBooks({}));
+  }
 
   ngOnInit() {
     this.books$ = this.store.select(selectBooks);

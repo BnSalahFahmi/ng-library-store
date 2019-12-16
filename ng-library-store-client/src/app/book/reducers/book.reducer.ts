@@ -16,6 +16,15 @@ export const initialState: State = {
 
 const bookReducer = createReducer(
     initialState,
+    on(bookActions.loadBooks, state => {
+        return ({ ...state, isLoading: true, errorMessage: null });
+    }),
+    on(bookActions.loadBooksSuccess, (state, { books }) => {
+        return ({ ...state, isLoading: false, errorMessage: null, books });
+    }),
+    on(bookActions.loadBooksFailure, (state, { errorMessage }) => {
+        return ({ ...state, isLoading: false, errorMessage: errorMessage });
+    }),
     on(bookActions.createBook, state => {
         return ({ ...state, isLoading: true, errorMessage: null });
     }),

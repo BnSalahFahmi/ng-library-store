@@ -21,10 +21,6 @@ public class Book {
     private String urlPhoto;
 
     @ManyToMany(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.MERGE
-            },
             mappedBy = "books")
     private Set<Library> libraries = new HashSet<>();
 }

@@ -3,15 +3,19 @@ package com.cqrs.event_sourcing.projections;
 import com.cqrs.event_sourcing.entities.Book;
 import com.cqrs.event_sourcing.entities.Library;
 import com.cqrs.event_sourcing.events.BookCreatedEvent;
+import com.cqrs.event_sourcing.queries.GetBooksQuery;
+import com.cqrs.event_sourcing.queries.GetLibrariesQuery;
 import com.cqrs.event_sourcing.repositories.BookRepository;
 import com.cqrs.event_sourcing.repositories.LibraryRepository;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.queryhandling.QueryHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -40,5 +44,11 @@ public class BookProjection {
         });
         book.setLibraries(libraries);
         bookRepository.save(book);
+    }
+
+    @QueryHandler
+    public List<Book> on(GetBooksQuery query){
+        logger.debug("[Query][Books] Handle query: {}", query);
+        return bookRepository.findAll();
     }
 }

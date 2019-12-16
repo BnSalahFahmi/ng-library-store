@@ -13,11 +13,11 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <div class="col-lg-3">
+               <!--  <div class="col-lg-3">
                     <mat-card class="add-book-card">
                         <mat-card-content>
                             <!-- <mat-icon [ngStyle]="{'color': '#9E9E9E'}" routerLink="../create" aria-hidden="false" aria-label="add icon">add
-                            </mat-icon> -->
+                            </mat-icon>
                             <div class="wrapper">
                                 <span class="fa-stack fa-5x">
                                     <mat-icon [ngStyle]="{'color': '#9E9E9E'}" routerLink="../create" aria-hidden="false" aria-label="add icon">add
@@ -27,9 +27,12 @@
                     </mat-card>
                 </div>
                 <div class="col-lg-3">
-                    <book-grid></book-grid>
+                    
                 </div>
-            </div>
+            </div> -->
+            <button class="pull-right margin-bottom margin-right" mat-stroked-button color="primary" routerLink="../create">Add Book</button>
+            <book-grid></book-grid>
+        </div>
         </div>
     </mat-card-content>
 </mat-card>

@@ -8,12 +8,47 @@
         position: absolute;
     }
 }
-.book-card {
+:host ::ng-deep .book-card {
+    max-width: 400px;
     border: 1px solid #eee !important;
-    margin-bottom: 8px;
-    &:hover {
-        background-color: #eee !important;
-        cursor: pointer;
+
+    .book-title {
+        color: #546E7A;
+        text-align: center;
+        height: 66px !important;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: 20px !important;
+        margin-left: -10px;
+        font-size: 14px;
+    }
+
+    .book-desc {
+        max-height: 45px !important;
+        display: inline-grid;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .mat-card-content {
+        height: 30px;
+    }
+
+    .mat-card-image {
+        width: 178px;
+        min-width: 60px;
+        height: 174px;
+    }
+
+    .mat-card-header {        
+          .mat-card-header-text {
+            height: 50px;
+            width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          }
     }
 }
 
