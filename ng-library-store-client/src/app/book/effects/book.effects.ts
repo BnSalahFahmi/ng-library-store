@@ -7,11 +7,16 @@ import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { Book } from '../models/Book.model';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class BookEffects {
 
-    constructor(private actions$: Actions, private bookService: BookService, private toastrService: ToastrService) {
+    constructor(
+        private actions$: Actions,
+        private bookService: BookService,
+        private toastrService: ToastrService,
+        private router: Router) {
 
     }
 
@@ -40,6 +45,7 @@ export class BookEffects {
                     .pipe(
                         map(() => {
                             this.toastrService.success('Book Saved Successfully', 'Success');
+                            this.router.navigate(['/book/list']);
                             return bookActions.createBookSuccess({});
                         }),
                         catchError((error: Error) => {

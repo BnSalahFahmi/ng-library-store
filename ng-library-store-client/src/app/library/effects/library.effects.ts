@@ -7,11 +7,16 @@ import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Library } from '../models/library.model';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class LibraryEffects {
 
-    constructor(private actions$: Actions, private libraryService: LibraryService, private toastrService: ToastrService) {
+    constructor(
+        private actions$: Actions,
+        private libraryService: LibraryService,
+        private toastrService: ToastrService,
+        private router: Router) {
 
     }
 
@@ -40,6 +45,7 @@ export class LibraryEffects {
                     .pipe(
                         map(() => {
                             this.toastrService.success('Library Saved Successfully', 'Success');
+                            this.router.navigate(['/library/list']);
                             return libraryActions.createLibrarySuccess({});
                         }),
                         catchError((error: Error) => {
