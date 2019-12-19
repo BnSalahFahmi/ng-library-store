@@ -32,14 +32,9 @@ export class LibraryCreateComponent implements OnInit {
 
   handleSaveClick(form: NgForm) {
     this.store.dispatch(libraryActions.createLibrary(this.library));
-    this.resetForm();
   }
 
   handleResetClick(form: NgForm) {
-    form.reset();
-  }
-
-  resetForm() {
     this.library = initLibrabry();
   }
 

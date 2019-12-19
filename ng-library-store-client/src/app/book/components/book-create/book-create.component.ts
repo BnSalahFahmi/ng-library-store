@@ -87,10 +87,6 @@ export class BookCreateComponent implements OnInit, OnDestroy {
   }
 
   handleResetClick(form: NgForm) {
-    form.reset();
-  }
-
-  resetForm() {
     this.book = initBook();
   }
 
