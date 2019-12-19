@@ -3,36 +3,24 @@
         <mat-card-title>Books</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <div *ngIf="error$ | async as error" class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <mat-icon [ngStyle]="{'color': '#9E9E9E'}" aria-hidden="false" aria-label="clear icon">clear</mat-icon>
-            </button>
-            <mat-icon [ngStyle]="{'color': '#EF5350'}" aria-hidden="false" aria-label="highlight_off icon">highlight_off
-            </mat-icon>
-            {{error}}
+        <div *ngIf="error$ | async as error" class="alert alert-danger alert-dismissible fade show">
+            <p>
+                <mat-icon [ngStyle]="{'color': '#EF5350'}" aria-hidden="false" aria-label="highlight_off icon">
+                    highlight_off</mat-icon>
+
+                <span class="error-text">{{error}}</span>
+            </p>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
         <div class="row">
             <div class="col-lg-12">
-               <!--  <div class="col-lg-3">
-                    <mat-card class="add-book-card">
-                        <mat-card-content>
-                            <!-- <mat-icon [ngStyle]="{'color': '#9E9E9E'}" routerLink="../create" aria-hidden="false" aria-label="add icon">add
-                            </mat-icon>
-                            <div class="wrapper">
-                                <span class="fa-stack fa-5x">
-                                    <mat-icon [ngStyle]="{'color': '#9E9E9E'}" routerLink="../create" aria-hidden="false" aria-label="add icon">add
-                                    </mat-icon>
-                                </span></div>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-                <div class="col-lg-3">
-                    
-                </div>
-            </div> -->
-            <button class="pull-right margin-bottom margin-right" mat-stroked-button color="primary" routerLink="../create">Add Book</button>
-            <book-grid></book-grid>
-        </div>
+                <button class="pull-right margin-bottom margin-right" mat-stroked-button color="primary"
+                    routerLink="../create">
+                    <mat-icon [ngStyle]="{'color': '#3f51b5'}" aria-hidden="false" aria-label="add icon">
+                            add</mat-icon>  Add Book
+                </button>
+                <book-grid></book-grid>
+            </div>
         </div>
     </mat-card-content>
 </mat-card>

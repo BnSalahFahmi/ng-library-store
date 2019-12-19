@@ -1,8 +1,11 @@
 package com.cqrs.event_sourcing.aggregats;
 
 import com.cqrs.event_sourcing.commands.CreateBookCommand;
+import com.cqrs.event_sourcing.commands.DeleteBookCommand;
 import com.cqrs.event_sourcing.dto.LibraryDTO;
 import com.cqrs.event_sourcing.events.BookCreatedEvent;
+import com.cqrs.event_sourcing.events.BookDeletedEvent;
+import com.cqrs.event_sourcing.events.LibraryDeletedEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.axonframework.commandhandling.CommandHandler;
@@ -42,6 +45,15 @@ public class Book {
         ));
     }
 
+    @CommandHandler
+    public void handle(DeleteBookCommand deleteBookCommand) {
+        Assert.notNull(deleteBookCommand.getBookId(), () -> "Book Id should not be null");
+        apply(new BookDeletedEvent(
+                deleteBookCommand.getBookId()
+        ));
+    }
+
+
     @EventSourcingHandler
     protected void on(BookCreatedEvent bookCreatedEvent) {
         this.id = bookCreatedEvent.getBookId();
@@ -50,4 +62,10 @@ public class Book {
         this.urlPath = bookCreatedEvent.getUrlPath();
         this.libraries = bookCreatedEvent.getLibraries();
     }
+
+    @EventSourcingHandler
+    protected void on(BookDeletedEvent bookDeletedEvent) {
+        this.id = bookDeletedEvent.getBookId();
+    }
+
 }

@@ -41,8 +41,16 @@
             </div>
         </mat-card-content>
         <mat-card-actions align="end">
-            <button type="submit" mat-stroked-button color="primary" (click)="handleSaveClick(f)">SAVE</button>
-            <button type="reset" mat-stroked-button color="warn" (click)="handleResetClick(f)">RESET</button>
+            <button type="submit" mat-stroked-button color="primary" (click)="handleSaveClick(f)">
+                <mat-icon class="icon-btn" [ngStyle]="{'color': '#3f51b5'}" aria-hidden="false"
+                    aria-label="Example check icon">check
+                </mat-icon>SAVE
+            </button>
+            <button type="reset" mat-stroked-button color="warn" (click)="handleResetClick(f)">
+                <mat-icon class="icon-btn" [ngStyle]="{'color': '#f44336'}" aria-hidden="false"
+                    aria-label="Example clear icon">clear
+                </mat-icon>RESET
+            </button>
         </mat-card-actions>
     </mat-card>
 </form>

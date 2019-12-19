@@ -33,6 +33,15 @@ const bookReducer = createReducer(
     }),
     on(bookActions.createBookFailure, (state, { errorMessage }) => {
         return ({ ...state, isLoading: false, errorMessage: errorMessage });
+    }),
+    on(bookActions.deleteBook, state => {
+        return ({ ...state, isLoading: true, errorMessage: null });
+    }),
+    on(bookActions.deleteBookSuccess, (state, {}) => {
+        return ({ ...state, isLoading: false, errorMessage: null });
+    }),
+    on(bookActions.deleteBookFailure, (state, { errorMessage }) => {
+        return ({ ...state, isLoading: false, errorMessage: errorMessage });
     })
 );
 

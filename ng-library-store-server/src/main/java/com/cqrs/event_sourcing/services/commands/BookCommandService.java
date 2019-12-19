@@ -7,4 +7,5 @@ import java.util.concurrent.CompletableFuture;
 public interface BookCommandService {
 
     public CompletableFuture<String> createBook(BookDTO bookDTO);
+    public CompletableFuture<String> deleteBook(String bookId);
 }

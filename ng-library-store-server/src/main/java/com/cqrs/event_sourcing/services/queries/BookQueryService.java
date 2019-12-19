@@ -1,11 +1,11 @@
 package com.cqrs.event_sourcing.services.queries;
 
-import com.cqrs.event_sourcing.entities.Book;
+import com.cqrs.event_sourcing.dto.BookDTO;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public interface BookQueryService {
 
-    public CompletableFuture<List<Book>> getAllBooks();
+    CompletableFuture<List<BookDTO>> getAllBooks();
 }

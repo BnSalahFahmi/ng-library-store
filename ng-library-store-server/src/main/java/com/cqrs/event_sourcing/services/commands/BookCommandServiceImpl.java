@@ -1,6 +1,7 @@
 package com.cqrs.event_sourcing.services.commands;
 
 import com.cqrs.event_sourcing.commands.CreateBookCommand;
+import com.cqrs.event_sourcing.commands.DeleteBookCommand;
 import com.cqrs.event_sourcing.dto.BookDTO;
 import com.cqrs.event_sourcing.providers.RandomIdProvider;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -20,6 +21,12 @@ public class BookCommandServiceImpl implements BookCommandService {
     @Override
     public CompletableFuture<String> createBook(BookDTO bookDTO) {
         CreateBookCommand command = new CreateBookCommand(RandomIdProvider.generateRandomUUID().toString(), bookDTO.getName(), bookDTO.getDescription(), bookDTO.getUrlPhoto(), bookDTO.getLibraries());
+        return commandGateway.send(command);
+    }
+
+    @Override
+    public CompletableFuture<String> deleteBook(String bookId) {
+        DeleteBookCommand command = new DeleteBookCommand(bookId);
         return commandGateway.send(command);
     }
 }

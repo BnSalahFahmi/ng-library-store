@@ -1,6 +1,6 @@
 package com.cqrs.event_sourcing.services.queries;
 
-import com.cqrs.event_sourcing.entities.Library;
+import com.cqrs.event_sourcing.dto.LibraryDTO;
 import com.cqrs.event_sourcing.queries.GetLibrariesQuery;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
@@ -20,7 +20,7 @@ public class LibraryQueryServiceImpl implements LibraryQueryService {
 
 
     @Override
-    public CompletableFuture<List<Library>> getAllLibraries() {
-        return queryGateway.query(new GetLibrariesQuery(), ResponseTypes.multipleInstancesOf(Library.class));
+    public CompletableFuture<List<LibraryDTO>> getAllLibraries() {
+        return queryGateway.query(new GetLibrariesQuery(), ResponseTypes.multipleInstancesOf(LibraryDTO.class));
     }
 }

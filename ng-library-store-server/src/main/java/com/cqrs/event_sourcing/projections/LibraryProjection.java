@@ -1,5 +1,7 @@
 package com.cqrs.event_sourcing.projections;
 
+import com.cqrs.event_sourcing.dto.BookDTO;
+import com.cqrs.event_sourcing.dto.LibraryDTO;
 import com.cqrs.event_sourcing.entities.Library;
 import com.cqrs.event_sourcing.events.LibraryCreatedEvent;
 import com.cqrs.event_sourcing.events.LibraryDeletedEvent;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class LibraryProjection {
@@ -30,7 +33,7 @@ public class LibraryProjection {
     @EventHandler
     void on(LibraryCreatedEvent event) {
         logger.debug("About to dispatch a new command to create a new library {}", event.getLibraryId());
-        Library library = new Library(event.getLibraryId() ,event.getName(), event.getAddress(), new HashSet<>());
+        Library library = new Library(event.getLibraryId(), event.getName(), event.getAddress());
         libraryRepository.save(library);
     }
 
@@ -41,9 +44,12 @@ public class LibraryProjection {
     }
 
     @QueryHandler
-    public List<Library> on(GetLibrariesQuery query){
+    public List<LibraryDTO> on(GetLibrariesQuery query) {
         logger.debug("[Query][Libraries] Handle query: {}", query);
-        return libraryRepository.findAll();
+        List<LibraryDTO> libraries = libraryRepository.findAll().stream().map(lib -> {
+            return new LibraryDTO(lib.getId(), lib.getName(), lib.getAddress(), new HashSet<>());
+        }).collect(Collectors.toList());
+        return libraries;
     }
 
 }

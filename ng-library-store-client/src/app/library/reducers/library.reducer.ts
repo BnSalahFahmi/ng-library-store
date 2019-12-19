@@ -33,6 +33,15 @@ const libraryReducer = createReducer(
     }),
     on(libraryActions.createLibraryFailure, (state, { errorMessage }) => {
         return ({ ...state, isLoading: false, errorMessage: errorMessage });
+    }),
+    on(libraryActions.deleteLibrary, state => {
+        return ({ ...state, isLoading: true, errorMessage: null });
+    }),
+    on(libraryActions.deleteLibrarySuccess, (state, {}) => {
+        return ({ ...state, isLoading: false, errorMessage: null });
+    }),
+    on(libraryActions.deleteLibraryFailure, (state, { errorMessage }) => {
+        return ({ ...state, isLoading: false, errorMessage: errorMessage });
     })
 );
 

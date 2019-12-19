@@ -1,5 +1,6 @@
 package com.cqrs.event_sourcing.controllers.queries;
 
+import com.cqrs.event_sourcing.dto.LibraryDTO;
 import com.cqrs.event_sourcing.entities.Library;
 import com.cqrs.event_sourcing.services.queries.LibraryQueryService;
 import io.swagger.annotations.Api;
@@ -24,7 +25,7 @@ public class LibraryQueryController {
     }
 
     @GetMapping("")
-    public CompletableFuture<List<Library>> fetchLibraries() {
+    public CompletableFuture<List<LibraryDTO>> fetchLibraries() {
         return this.libraryQueryService.getAllLibraries();
     }
 }

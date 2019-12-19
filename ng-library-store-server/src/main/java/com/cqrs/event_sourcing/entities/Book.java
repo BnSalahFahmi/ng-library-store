@@ -1,15 +1,14 @@
 package com.cqrs.event_sourcing.entities;
 
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 @Entity
 public class Book {
 
@@ -20,7 +19,13 @@ public class Book {
     private String description;
     private String urlPhoto;
 
-    @ManyToMany(fetch = FetchType.LAZY,
-            mappedBy = "books")
+    @ManyToMany(mappedBy = "books")
     private Set<Library> libraries = new HashSet<>();
+
+    public Book(String id, String name, String description, String urlPhoto) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.urlPhoto = urlPhoto;
+    }
 }

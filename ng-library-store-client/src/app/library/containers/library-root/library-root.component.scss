@@ -17,3 +17,20 @@
     height: 26px !important;
     margin-top: 5px;
 }
+
+.alert {
+
+    p {
+        margin-bottom: 0px !important;
+    }
+
+    .mat-icon {
+        position: absolute !important;
+    }
+
+    .error-text {
+        margin-left: 43px;
+        padding-top: 3px !important;
+        display: block;
+    }
+}

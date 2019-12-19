@@ -23,4 +23,9 @@ public class BookCommandController {
     public CompletableFuture<String> createBook(@RequestBody BookDTO bookDTO){
         return bookCommandService.createBook(bookDTO);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public CompletableFuture<String> deleteBook(@PathVariable String id){
+        return bookCommandService.deleteBook(id);
+    }
 }

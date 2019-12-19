@@ -1,6 +1,6 @@
 package com.cqrs.event_sourcing.services.queries;
 
-import com.cqrs.event_sourcing.entities.Book;
+import com.cqrs.event_sourcing.dto.BookDTO;
 import com.cqrs.event_sourcing.queries.GetBooksQuery;
 import org.axonframework.messaging.responsetypes.ResponseTypes;
 import org.axonframework.queryhandling.QueryGateway;
@@ -19,7 +19,7 @@ public class BookQueryServiceImpl implements BookQueryService {
     }
 
     @Override
-    public CompletableFuture<List<Book>> getAllBooks() {
-        return queryGateway.query(new GetBooksQuery(), ResponseTypes.multipleInstancesOf(Book.class));
+    public CompletableFuture<List<BookDTO>> getAllBooks() {
+        return queryGateway.query(new GetBooksQuery(), ResponseTypes.multipleInstancesOf(BookDTO.class));
     }
 }

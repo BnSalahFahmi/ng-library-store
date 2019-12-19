@@ -3,15 +3,19 @@
         <mat-card-title>Libraries</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-        <div *ngIf="error$ | async as error" class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <mat-icon [ngStyle]="{'color': '#9E9E9E'}" aria-hidden="false" aria-label="clear icon">clear</mat-icon>
-            </button>
-            <mat-icon [ngStyle]="{'color': '#EF5350'}" aria-hidden="false" aria-label="highlight_off icon">highlight_off</mat-icon>
-            {{error}}
+        <div *ngIf="error$ | async as error" class="alert alert-danger alert-dismissible fade show">
+            <p>
+                <mat-icon [ngStyle]="{'color': '#EF5350'}" aria-hidden="false" aria-label="highlight_off icon">
+                    highlight_off</mat-icon>
+
+                <span class="error-text">{{error}}</span>
+            </p>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
-        <button class="pull-right margin-bottom margin-right" mat-stroked-button color="primary"
-            routerLink="../create">Add Library</button>
+        <button class="pull-right margin-bottom margin-right" mat-stroked-button color="primary" routerLink="../create">
+            <mat-icon [ngStyle]="{'color': '#3f51b5'}" aria-hidden="false" aria-label="add icon">
+                add</mat-icon> Add Library
+        </button>
         <library-list></library-list>
     </mat-card-content>
 </mat-card>

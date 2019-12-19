@@ -23,7 +23,7 @@ export class LibraryListComponent implements OnInit {
   selection = new SelectionModel<Library>(true, []);
   displayedColumns: string[] = ['select', 'name', 'address', 'actions'];
   dataSource = new MatTableDataSource([]);
-  libraries$: Observable<Library[]>;
+  libraries: Library[];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -34,9 +34,9 @@ export class LibraryListComponent implements OnInit {
     this.store.dispatch(libraryActions.loadLibraries({}));
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.libraries$ = this.store.select(selectLibraries);
     this.store.select(selectLibraries).subscribe(
       data => {
+        this.libraries = data;
         this.dataSource = new MatTableDataSource(data);
       }
     );

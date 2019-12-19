@@ -1,5 +1,6 @@
 package com.cqrs.event_sourcing.controllers.queries;
 
+import com.cqrs.event_sourcing.dto.BookDTO;
 import com.cqrs.event_sourcing.entities.Book;
 import com.cqrs.event_sourcing.entities.Library;
 import com.cqrs.event_sourcing.services.queries.BookQueryService;
@@ -26,7 +27,7 @@ public class BookQueryController {
     }
 
     @GetMapping("")
-    public CompletableFuture<List<Book>> fetchLibraries() {
+    public CompletableFuture<List<BookDTO>> fetchLibraries() {
         return this.bookQueryService.getAllBooks();
     }
 }

@@ -50,4 +50,23 @@ export class BookEffects {
             )
         )
     );
+
+    DeleteBookEffect$: Observable<Action> = createEffect(() =>
+        this.actions$.pipe(
+            ofType(bookActions.deleteBook),
+            mergeMap(action =>
+                this.bookService.deleteLBook(action.bookId)
+                    .pipe(
+                        map(() => {
+                            this.toastrService.success('Book Deleted Successfully', 'Success');
+                            return bookActions.loadBooks({});
+                        }),
+                        catchError((error: Error) => {
+                            this.toastrService.error(error.message, 'Error');
+                            return of(bookActions.deleteBookFailure({ errorMessage: error.message }));
+                        })
+                    )
+            )
+        )
+    );
 }

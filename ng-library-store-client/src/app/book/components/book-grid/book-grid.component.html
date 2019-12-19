@@ -9,11 +9,11 @@
                 </p>
             </mat-card-content>
             <mat-card-actions align="end">
-                <button mat-stroked-button color="warn" mat-button>DELETE</button>
+                <button mat-stroked-button color="warn" mat-button (click)="handleDeleteClick(book)">DELETE</button>
             </mat-card-actions>
         </mat-card>
     </div>
-</div>
-<div class="empty-data" *ngIf="!(books$ | async)">
-    <span>No Data Found</span>
+    <div class="empty-data" *ngIf="books.length == 0">
+        <span>No Data Found</span>
+    </div>
 </div>

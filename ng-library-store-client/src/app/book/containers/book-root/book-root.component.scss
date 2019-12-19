@@ -33,3 +33,20 @@
     transition: 0.9s;
     transform: rotateY(180deg);
 }
+
+.alert {
+
+    p {
+        margin-bottom: 0px !important;
+    }
+
+    .mat-icon {
+        position: absolute !important;
+    }
+
+    .error-text {
+        margin-left: 43px;
+        padding-top: 3px !important;
+        display: block;
+    }
+}

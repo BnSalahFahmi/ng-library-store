@@ -31,4 +31,18 @@ export const createBookFailure = createAction(
     props<{ errorMessage: string }>()
 );
 
+export const deleteBook = createAction(
+    '[Book API] Delete Book ',
+    props<{bookId: string}>()
+);
+
+export const deleteBookSuccess = createAction(
+    '[Book API] Delete Book Success',
+    props<{}>()
+);
+
+export const deleteBookFailure = createAction(
+    '[Book API] Delete Book Failure',
+    props<{ errorMessage: string }>()
+);
 

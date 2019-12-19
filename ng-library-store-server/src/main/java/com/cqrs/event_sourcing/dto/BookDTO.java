@@ -1,5 +1,6 @@
 package com.cqrs.event_sourcing.dto;
 
+import com.cqrs.event_sourcing.entities.Library;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;

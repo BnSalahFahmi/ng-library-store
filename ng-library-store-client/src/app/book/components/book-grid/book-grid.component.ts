@@ -27,11 +27,11 @@ export class BookGridComponent implements OnInit {
   }
 
   handleViewClick(book: Book) {
-
+    //  TODO
   }
 
   handleDeleteClick(book: Book) {
-    // TODO
+    this.store.dispatch(bookActions.deleteBook({bookId: book.id}));
   }
 
 }
