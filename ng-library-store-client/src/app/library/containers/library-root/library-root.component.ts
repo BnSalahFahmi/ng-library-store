@@ -10,10 +10,9 @@ import { selectErrorMessage, selectLoading } from '../../selectors/library.selec
   styleUrls: ['./library-root.component.scss']
 })
 export class LibraryRootComponent implements OnInit {
-  
-  private toggle = true;
-  private loading$: Observable<boolean>;
-  private error$: Observable<string>;
+
+  loading$: Observable<boolean>;
+  error$: Observable<string>;
 
   constructor(private store: Store<fromLibrary.State>) { }
 

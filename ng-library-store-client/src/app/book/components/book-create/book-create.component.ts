@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ROUTE_ANIMATIONS_ELEMENTS } from 'src/app/shared/animations/route.animations';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
-import { NgForm, FormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Book, initBook } from '../../models/Book.model';
 import { selectLoading, selectErrorMessage } from '../../selectors/book.selectors';
@@ -24,24 +24,24 @@ export class BookCreateComponent implements OnInit, OnDestroy {
 
   @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
 
-  private filteredLibraries: ReplaySubject<Library[]> = new ReplaySubject<Library[]>(1);
-  private onDestroy$ = new Subject<void>();
-  private libraryCtrl: FormControl = new FormControl();
-  private librariesFilter: FormControl = new FormControl();
-  private book: Book = initBook();
+  filteredLibraries: ReplaySubject<Library[]> = new ReplaySubject<Library[]>(1);
+  onDestroy$ = new Subject<void>();
+  libraryCtrl: FormControl = new FormControl();
+  librariesFilter: FormControl = new FormControl();
+  book: Book = initBook();
+  libraries$: Observable<Library[]>;
+  libraries: Library[] = [];
+  loading$: Observable<boolean>;
+  error$: Observable<string>;
 
-  private loading$: Observable<boolean>;
-  private error$: Observable<string>;
-  private libraries$: Observable<Library[]>;
-  private libraries: Library[] = [];
-
-  constructor(private store: Store<fromBook.State>) {
-    this.store.dispatch(libraryActions.loadLibraries({}));
-  }
+  constructor(private store: Store<fromBook.State>) {}
 
   ngOnInit() {
+    this.store.dispatch(libraryActions.loadLibraries({}));
+
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectErrorMessage);
+
     this.store.select(selectLibraries).subscribe(
       data => {
         this.libraries = data;
@@ -81,12 +81,12 @@ export class BookCreateComponent implements OnInit, OnDestroy {
     );
   }
 
-  handleSaveClick(form: NgForm) {
+  handleSaveClick() {
     this.book.libraries = (this.libraryCtrl as any)._pendingValue;
     this.store.dispatch(bookActions.createBook(this.book));
   }
 
-  handleResetClick(form: NgForm) {
+  handleResetClick() {
     this.book = initBook();
   }
 

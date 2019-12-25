@@ -1,16 +1,4 @@
-<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" [ngClass]="routeAnimationsElements">
-    <ng-container matColumnDef="select">
-        <th class="with-fixed-width" mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-                [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-            </mat-checkbox>
-        </th>
-        <td class="with-fixed-width" mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-                [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
-            </mat-checkbox>
-        </td>
-    </ng-container>
+<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8" [ngClass]="routeAnimationsElements" matSortDisableClear matSortDirection="desc" matSort  matSortActive="name">
     <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
@@ -23,7 +11,7 @@
         <th class="with-fixed-width" mat-header-cell *matHeaderCellDef> Delete</th>
         <td class="with-fixed-width" mat-cell *matCellDef="let element">
             <button mat-icon-button aria-label="delete icon"
-                (click)="handleDeleteClick(element.id)">
+                (click)="handleDeleteClick(element)">
                 <mat-icon [ngStyle]="{'color': '#9E9E9E'}" aria-hidden="false" aria-label="Example delete icon">delete
                 </mat-icon>
             </button>

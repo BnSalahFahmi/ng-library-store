@@ -26,10 +26,6 @@ export class BookGridComponent implements OnInit {
     this.books$ = this.store.select(selectBooks);
   }
 
-  handleViewClick(book: Book) {
-    //  TODO
-  }
-
   handleDeleteClick(book: Book) {
     this.store.dispatch(bookActions.deleteBook({bookId: book.id}));
   }
