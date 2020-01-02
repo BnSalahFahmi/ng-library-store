@@ -19,7 +19,7 @@ export class BookGridComponent implements OnInit {
   books$: Observable<Book[]>;
 
   constructor(private store: Store<fromBook.State>) {
-    this.store.dispatch(bookActions.loadBooks({}));
+    this.store.dispatch(bookActions.loadBooks());
   }
 
   ngOnInit() {

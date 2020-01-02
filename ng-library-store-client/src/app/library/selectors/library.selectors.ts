@@ -6,7 +6,7 @@ export const getLibraryState = createFeatureSelector<LibraryState>('Library');
 
 export const selectLibraries = createSelector(
     getLibraryState,
-  (state: LibraryState) => state.libraries
+  (state: LibraryState) => Object.values(state.entities)
 );
 
 export const selectLoading = createSelector(
@@ -16,5 +16,5 @@ export const selectLoading = createSelector(
 
 export const selectErrorMessage = createSelector(
     getLibraryState,
-  (state: LibraryState) => state.errorMessage
+  (state: LibraryState) => state.error
 );

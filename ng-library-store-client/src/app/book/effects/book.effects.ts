@@ -26,11 +26,11 @@ export class BookEffects {
             mergeMap(() =>
                 this.bookService.fetchBooks().pipe(
                     map((data: Book[]) => {
-                        return bookActions.loadBooksSuccess({ books: data });
+                        return bookActions.loadBooksSuccess({ data });
                     }),
                     catchError((error: Error) => {
                         this.toastrService.error(error.message, 'Error');
-                        return of(bookActions.loadBooksFailure({ errorMessage: error.message }));
+                        return of(bookActions.loadBooksFailure({ error }));
                     })
                 )
             )
@@ -40,8 +40,8 @@ export class BookEffects {
     CreateBookEffect$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
             ofType(bookActions.createBook),
-            mergeMap(action =>
-                this.bookService.createBook(action)
+            mergeMap(payload =>
+                this.bookService.createBook(payload.book)
                     .pipe(
                         map(() => {
                             this.toastrService.success('Book Saved Successfully', 'Success');
@@ -50,7 +50,7 @@ export class BookEffects {
                         }),
                         catchError((error: Error) => {
                             this.toastrService.error(error.message, 'Error');
-                            return of(bookActions.createBookFailure({ errorMessage: error.message }));
+                            return of(bookActions.createBookFailure({ error }));
                         })
                     )
             )
@@ -60,16 +60,16 @@ export class BookEffects {
     DeleteBookEffect$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
             ofType(bookActions.deleteBook),
-            mergeMap(action =>
-                this.bookService.deleteLBook(action.bookId)
+            mergeMap(payload =>
+                this.bookService.deleteLBook(payload.bookId)
                     .pipe(
                         map(() => {
                             this.toastrService.success('Book Deleted Successfully', 'Success');
-                            return bookActions.loadBooks({});
+                            return bookActions.loadBooks();
                         }),
                         catchError((error: Error) => {
                             this.toastrService.error(error.message, 'Error');
-                            return of(bookActions.deleteBookFailure({ errorMessage: error.message }));
+                            return of(bookActions.deleteBookFailure({ error }));
                         })
                     )
             )

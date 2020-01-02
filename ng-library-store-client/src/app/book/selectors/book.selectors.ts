@@ -6,7 +6,7 @@ export const getBookState = createFeatureSelector<BookState>('Book');
 
 export const selectBooks = createSelector(
   getBookState,
-  (state: BookState) => state.books
+  (state: BookState) => Object.values(state.entities)
 );
 
 export const selectLoading = createSelector(
@@ -16,5 +16,5 @@ export const selectLoading = createSelector(
 
 export const selectErrorMessage = createSelector(
   getBookState,
-  (state: BookState) => state.errorMessage
+  (state: BookState) => state.error
 );

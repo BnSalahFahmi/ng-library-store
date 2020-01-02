@@ -29,7 +29,7 @@ export class LibraryListComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromLibrary.State>) { }
 
   ngOnInit() {
-    this.store.dispatch(libraryActions.loadLibraries({}));
+    this.store.dispatch(libraryActions.loadLibraries());
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.subscriptions.push(this.store.select(selectLibraries).subscribe(

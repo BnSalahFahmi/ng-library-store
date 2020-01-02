@@ -1,47 +1,80 @@
 import { createReducer, on, Action } from '@ngrx/store';
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import * as libraryActions from '../actions/library.actions';
 import { Library } from '../models/library.model';
 
-export interface State {
-    libraries: Library[];
-    isLoading: boolean;
-    errorMessage: string;
+export const adapter: EntityAdapter<Library> = createEntityAdapter<Library>({
+    sortComparer: sortByCreationDate
+});
+
+export function sortByCreationDate(ob1: Library, ob2: Library): number {
+    const d1 = ob1.creationDate;
+    const d2 = ob2.creationDate;
+    if (!d1 || !d2) {
+        return 0;
+    }
+    if (d1.getTime() === d2.getTime()) {
+        return 0;
+    }
+    if (d1 > d2) {
+        return 1;
+    }
+    if (d1 < d2) {
+        return -1;
+    }
 }
 
-export const initialState: State = {
-    libraries: [],
+export interface State extends EntityState<Library> {
+    isLoading: boolean;
+    error?: Error | any;
+}
+
+export const initialState: State = adapter.getInitialState({
     isLoading: false,
-    errorMessage: ''
-};
+    error: null
+});
 
 const libraryReducer = createReducer(
     initialState,
     on(libraryActions.loadLibraries, state => {
-        return ({ ...state, isLoading: true, errorMessage: null });
+        return ({ ...state, isLoading: true});
     }),
-    on(libraryActions.loadLibrariesSuccess, (state, { libraries }) => {
-        return ({ ...state, isLoading: false, errorMessage: null, libraries });
+    on(libraryActions.loadLibrariesSuccess, (state, { data }) => {
+        return adapter.addAll(data, {
+            ...state,
+            isLoading: false
+        });
     }),
-    on(libraryActions.loadLibrariesFailure, (state, { errorMessage }) => {
-        return ({ ...state, isLoading: false, errorMessage: errorMessage });
+    on(libraryActions.loadLibrariesFailure, (state, { error }) => {
+        return {
+            ...state,
+            isLoading: false,
+            error
+        };
     }),
-    on(libraryActions.createLibrary, state => {
-        return ({ ...state, isLoading: true, errorMessage: null });
+    on(libraryActions.createLibrary, (state, { library }) => {
+        return adapter.addOne(library, {
+            ...state,
+            isLoading: false
+        });
     }),
-    on(libraryActions.createLibrarySuccess, (state, {}) => {
-        return ({ ...state, isLoading: false, errorMessage: null });
+    on(libraryActions.createLibrarySuccess, state => {
+        return ({ ...state, isLoading: false });
     }),
-    on(libraryActions.createLibraryFailure, (state, { errorMessage }) => {
-        return ({ ...state, isLoading: false, errorMessage: errorMessage });
+    on(libraryActions.createLibraryFailure, (state, { error }) => {
+        return ({ ...state, isLoading: false, error });
     }),
-    on(libraryActions.deleteLibrary, state => {
-        return ({ ...state, isLoading: true, errorMessage: null });
+    on(libraryActions.deleteLibrary, (state, { libraryId }) => {
+        return adapter.removeOne(libraryId, {
+            ...state,
+            isLoading: false
+        });
     }),
-    on(libraryActions.deleteLibrarySuccess, (state, {}) => {
-        return ({ ...state, isLoading: false, errorMessage: null });
+    on(libraryActions.deleteLibrarySuccess, (state, { }) => {
+        return ({ ...state, isLoading: false});
     }),
-    on(libraryActions.deleteLibraryFailure, (state, { errorMessage }) => {
-        return ({ ...state, isLoading: false, errorMessage: errorMessage });
+    on(libraryActions.deleteLibraryFailure, (state, { error }) => {
+        return ({ ...state, isLoading: false, error });
     })
 );
 

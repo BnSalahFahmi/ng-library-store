@@ -3,6 +3,7 @@ export interface Book {
     name: string;
     description: string;
     urlPhoto: string;
+    creationDate: Date;
     libraries: object[];
 }
 
@@ -12,6 +13,7 @@ export function initBook(): Book {
         name: '',
         description: '',
         urlPhoto: '',
+        creationDate: null,
         libraries: []
     };
 }

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { map, mergeMap, catchError, tap } from 'rxjs/operators';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 import * as libraryActions from './../actions/library.actions';
+import { LibraryActionTypes } from './../actions/library.actions';
 import { LibraryService } from '../services/library.service';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
@@ -22,15 +23,15 @@ export class LibraryEffects {
 
     LoadLibraries$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
-            ofType(libraryActions.loadLibraries),
+            ofType(LibraryActionTypes.LoadLibraries),
             mergeMap(() =>
                 this.libraryService.fetchLibraries().pipe(
                     map((data: Library[]) => {
-                        return libraryActions.loadLibrariesSuccess({ libraries: data });
+                        return libraryActions.loadLibrariesSuccess({ data });
                     }),
                     catchError((error: Error) => {
                         this.toastrService.error(error.message, 'Error');
-                        return of(libraryActions.loadLibrariesFailure({ errorMessage: error.message }));
+                        return of(libraryActions.loadLibrariesFailure({ error }));
                     })
                 )
             )
@@ -39,18 +40,18 @@ export class LibraryEffects {
 
     CreateLibraryEffect$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
-            ofType(libraryActions.createLibrary),
-            mergeMap(action =>
-                this.libraryService.createLibrary(action)
+            ofType(LibraryActionTypes.CreateLibrary),
+            mergeMap(payload =>
+                this.libraryService.createLibrary((payload as any).library)
                     .pipe(
                         map(() => {
                             this.toastrService.success('Library Saved Successfully', 'Success');
                             this.router.navigate(['/library/list']);
-                            return libraryActions.createLibrarySuccess({});
+                            return libraryActions.createLibrarySuccess();
                         }),
                         catchError((error: Error) => {
                             this.toastrService.error(error.message, 'Error');
-                            return of(libraryActions.createLibraryFailure({ errorMessage: error.message }));
+                            return of(libraryActions.createLibraryFailure({ error }));
                         })
                     )
             )
@@ -59,17 +60,17 @@ export class LibraryEffects {
 
     DeleteLibraryEffect$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
-            ofType(libraryActions.deleteLibrary),
-            mergeMap(action =>
-                this.libraryService.deleteLibrary(action.libraryId)
+            ofType(LibraryActionTypes.DeleteLibrary),
+            mergeMap(payload =>
+                this.libraryService.deleteLibrary((payload as any).libraryId)
                     .pipe(
                         map(() => {
                             this.toastrService.success('Library Deleted Successfully', 'Success');
-                            return libraryActions.loadLibraries({});
+                            return libraryActions.loadLibraries();
                         }),
                         catchError((error: Error) => {
                             this.toastrService.error(error.message, 'Error');
-                            return of(libraryActions.deleteLibraryFailure({ errorMessage: error.message }));
+                            return of(libraryActions.deleteLibraryFailure({ error }));
                         })
                     )
             )

@@ -1,48 +1,60 @@
 import { createAction, props } from '@ngrx/store';
 import { Book } from '../models/Book.model';
 
+export enum BookActionTypes {
+    LoadBooks = '[Book] Load Books',
+    LoadBooksSuccess = '[Book] Load Books Success',
+    LoadBooksFail = '[Book] Load Books Fail',
+
+    CreateBook = '[Book] CreateBook',
+    CreateBookSuccess = '[Book] CreateBook Success',
+    CreateBookFail = '[Book] CreateBook Fail',
+
+    DeleteBook = '[Book] Delete Book',
+    DeleteBookSuccess = '[Book] Delete Book Success',
+    DeleteBookFail = '[Book] Delete Book Fail'
+}
+
 export const loadBooks = createAction(
-    '[Library API] Load Books',
-    props<{}>()
+    BookActionTypes.LoadBooks
 );
 
 export const loadBooksSuccess = createAction(
-    '[Library API] Load Books Success',
-    props<{ books: Book[] }>()
+    BookActionTypes.LoadBooksSuccess,
+    props<{ data: Book[] }>()
 );
 
 export const loadBooksFailure = createAction(
-    '[Library API] Load Books Failure',
-    props<{ errorMessage: string }>()
+    BookActionTypes.LoadBooksFail,
+    props<{ error: Error | any }>()
 );
 
 export const createBook = createAction(
-    '[Book API] Create Book',
-    props<Book>()
+    BookActionTypes.CreateBook,
+    props<{book: Book}>()
 );
 
 export const createBookSuccess = createAction(
-    '[Book API] Create Book Success',
+    BookActionTypes.CreateBookSuccess,
     props<{}>()
 );
 
 export const createBookFailure = createAction(
-    '[Book API] Create Book Failure',
-    props<{ errorMessage: string }>()
+    BookActionTypes.CreateBookFail,
+    props<{ error: Error | any }>()
 );
 
 export const deleteBook = createAction(
-    '[Book API] Delete Book ',
+    BookActionTypes.DeleteBook,
     props<{bookId: string}>()
 );
 
 export const deleteBookSuccess = createAction(
-    '[Book API] Delete Book Success',
-    props<{}>()
+    BookActionTypes.DeleteBookSuccess,
 );
 
 export const deleteBookFailure = createAction(
-    '[Book API] Delete Book Failure',
-    props<{ errorMessage: string }>()
+    BookActionTypes.DeleteBookFail,
+    props<{ error: Error | any }>()
 );
 

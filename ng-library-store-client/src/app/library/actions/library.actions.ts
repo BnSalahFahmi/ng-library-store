@@ -1,49 +1,60 @@
 import { createAction, props } from '@ngrx/store';
 import { Library } from '../models/library.model';
 
+export enum LibraryActionTypes {
+    LoadLibraries = '[Library] Load Libraries',
+    LoadLibrariesSuccess = '[Library] Load Libraries Success',
+    LoadLibrariesFail = '[Library] Load Libraries Fail',
+
+    CreateLibrary = '[Library] CreateLibrary',
+    CreateLibrarySuccess = '[Library] CreateLibrary Success',
+    CreateLibraryFail = '[Library] CreateLibrary Fail',
+
+    DeleteLibrary = '[Library] Delete Library',
+    DeleteLibrarySuccess = '[Library] Delete Library Success',
+    DeleteLibraryFail = '[Library] Delete Library Fail'
+}
+
 export const loadLibraries = createAction(
-    '[Library API] Load Libraries',
-    props<{}>()
+    LibraryActionTypes.LoadLibraries
 );
 
 export const loadLibrariesSuccess = createAction(
-    '[Library API] Load Libraries Success',
-    props<{ libraries: Library[] }>()
+    LibraryActionTypes.LoadLibrariesSuccess,
+    props<{ data: Library[] }>()
 );
 
 export const loadLibrariesFailure = createAction(
-    '[Library API] Load Libraries Failure',
-    props<{ errorMessage: string }>()
+    LibraryActionTypes.LoadLibrariesFail,
+    props<{ error: Error | any }>()
 );
 
 export const createLibrary = createAction(
-    '[Library API] Create Library',
-    props<Library>()
+    LibraryActionTypes.CreateLibrary,
+    props<{library: Library}>()
 );
 
 export const createLibrarySuccess = createAction(
-    '[Library API] Create Library Success',
-    props<{}>()
+    LibraryActionTypes.CreateLibrarySuccess
 );
 
 export const createLibraryFailure = createAction(
-    '[Library API] Create Library Failure',
-    props<{ errorMessage: string }>()
+    LibraryActionTypes.CreateLibraryFail,
+    props<{ error: Error | any }>()
 );
 
 export const deleteLibrary = createAction(
-    '[Library API] Delete Library',
+    LibraryActionTypes.DeleteLibrary,
     props<{libraryId: string}>()
 );
 
 export const deleteLibrarySuccess = createAction(
-    '[Library API] Delete Library Success',
-    props<{}>()
+    LibraryActionTypes.DeleteLibrarySuccess
 );
 
 export const deleteLibraryFailure = createAction(
-    '[Library API] Delete Library Failure',
-    props<{ errorMessage: string }>()
+    LibraryActionTypes.DeleteLibraryFail,
+    props<{ error: Error | any }>()
 );
 
 

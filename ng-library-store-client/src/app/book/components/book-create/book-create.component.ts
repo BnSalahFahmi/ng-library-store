@@ -37,7 +37,7 @@ export class BookCreateComponent implements OnInit, OnDestroy {
   constructor(private store: Store<fromBook.State>) {}
 
   ngOnInit() {
-    this.store.dispatch(libraryActions.loadLibraries({}));
+    this.store.dispatch(libraryActions.loadLibraries());
 
     this.loading$ = this.store.select(selectLoading);
     this.error$ = this.store.select(selectErrorMessage);
@@ -82,8 +82,11 @@ export class BookCreateComponent implements OnInit, OnDestroy {
   }
 
   handleSaveClick() {
-    this.book.libraries = (this.libraryCtrl as any)._pendingValue;
-    this.store.dispatch(bookActions.createBook(this.book));
+    this.libraryCtrl.value.forEach(element => {
+      this.book.libraries.push(element);
+    });
+    this.book.creationDate = new Date();
+    this.store.dispatch(bookActions.createBook({book: this.book}));
   }
 
   handleResetClick() {
