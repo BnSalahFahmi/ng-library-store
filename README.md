@@ -8,7 +8,7 @@ Technology Stack :
 * Spring Boot
 * Axon 4 (CQRS architecture / Event Sourcing)
 
-##Screenshots
+## Screenshots
 
 <p align="center">
     <img src="/meta-assets/library-list.png" alt="Library List" align="center">
