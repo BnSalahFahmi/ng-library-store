@@ -17,6 +17,11 @@
                         required></textarea>
                 </mat-form-field>
 
+              <mat-form-field>
+                <input matInput placeholder="Author" name="author" [(ngModel)]="book.author" #name="ngModel"
+                       [ngClass]="{ 'is-invalid': f.submitted && author.invalid }" required />
+              </mat-form-field>
+
                 <mat-form-field>
                     <input matInput placeholder="Image URL Path" name="img" [(ngModel)]="book.urlPhoto" #img="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && img.invalid }" required />

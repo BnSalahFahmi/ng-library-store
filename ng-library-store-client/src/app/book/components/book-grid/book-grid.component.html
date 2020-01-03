@@ -1,5 +1,5 @@
 <div class="books-container row col-lg-12" *ngIf="(books$ | async) as books" [ngClass]="routeAnimationsElements">
-    <div *ngFor="let book of books" class="col-lg-2 col-md-2 col-sm-2">
+    <div *ngFor="let book of books" class="col-lg-3 col-md-3 col-sm-3">
         <mat-card class="book-card">
             <img mat-card-image src="{{book.urlPhoto}}">
             <span class="book-title">{{book.name}}</span>
