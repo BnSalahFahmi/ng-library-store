@@ -20,7 +20,7 @@ Technology Stack :
     <img src="/meta-assets/book-list.png" alt="Book List" align="center">
 </p>
 <p align="center">
-    <img src="/meta-assets/book-create.png" alt="Create Book" align="center">
+    <img src="/meta-assets/create-book.png" alt="Create Book" align="center">
 </p>
 <p align="center">
     <img src="/meta-assets/404.png" alt="404 Not Found" align="center">
