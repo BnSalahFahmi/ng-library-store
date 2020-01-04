@@ -2,59 +2,58 @@ import { createAction, props } from '@ngrx/store';
 import { Book } from '../models/Book.model';
 
 export enum BookActionTypes {
-    LoadBooks = '[Book] Load Books',
-    LoadBooksSuccess = '[Book] Load Books Success',
-    LoadBooksFail = '[Book] Load Books Fail',
+    LOAD_BOOKS = '[Book] Load Books',
+    LOAD_BOOKS_SUCCESS = '[Book] Load Books Success',
+    LOAD_BOOKS_FAIL = '[Book] Load Books Fail',
 
-    CreateBook = '[Book] Create Book',
-    CreateBookSuccess = '[Book] Create Book Success',
-    CreateBookFail = '[Book] Create Book Fail',
+    CREATE_BOOK = '[Book] Create Book',
+    CREATE_BOOK_SUCCESS = '[Book] Create Book Success',
+    CREATE_BOOK_FAIL = '[Book] Create Book Fail',
 
-    DeleteBook = '[Book] Delete Book',
-    DeleteBookSuccess = '[Book] Delete Book Success',
-    DeleteBookFail = '[Book] Delete Book Fail'
+    DELETE_BOOK = '[Book] Delete Book',
+    DELETE_BOOK_SUCCESS = '[Book] Delete Book Success',
+    DELETE_BOOK_FAIL = '[Book] Delete Book Fail'
 }
 
 export const loadBooks = createAction(
-    BookActionTypes.LoadBooks
+    BookActionTypes.LOAD_BOOKS
 );
 
 export const loadBooksSuccess = createAction(
-    BookActionTypes.LoadBooksSuccess,
-    props<{ data: Book[] }>()
+    BookActionTypes.LOAD_BOOKS_SUCCESS,
+    props<{ payload: Book[] }>()
 );
 
 export const loadBooksFailure = createAction(
-    BookActionTypes.LoadBooksFail,
-    props<{ error: Error | any }>()
+    BookActionTypes.LOAD_BOOKS_FAIL,
+    props<Error>()
 );
 
 export const createBook = createAction(
-    BookActionTypes.CreateBook,
-    props<{book: Book}>()
+    BookActionTypes.CREATE_BOOK,
+    props<{payload: Book}>()
 );
 
 export const createBookSuccess = createAction(
-    BookActionTypes.CreateBookSuccess,
-    props<{}>()
+    BookActionTypes.CREATE_BOOK_SUCCESS
 );
 
 export const createBookFailure = createAction(
-    BookActionTypes.CreateBookFail,
-    props<{ error: Error | any }>()
+    BookActionTypes.CREATE_BOOK_FAIL,
+    props<Error>()
 );
 
 export const deleteBook = createAction(
-    BookActionTypes.DeleteBook,
-    props<{bookId: string}>()
+    BookActionTypes.DELETE_BOOK,
+    props<{payload: string}>()
 );
 
 export const deleteBookSuccess = createAction(
-    BookActionTypes.DeleteBookSuccess,
+    BookActionTypes.DELETE_BOOK_SUCCESS,
 );
 
 export const deleteBookFailure = createAction(
-    BookActionTypes.DeleteBookFail,
-    props<{ error: Error | any }>()
+    BookActionTypes.DELETE_BOOK_FAIL,
+    props<Error>()
 );
 

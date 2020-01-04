@@ -2,59 +2,59 @@ import { createAction, props } from '@ngrx/store';
 import { Library } from '../models/library.model';
 
 export enum LibraryActionTypes {
-    LoadLibraries = '[Library] Load Libraries',
-    LoadLibrariesSuccess = '[Library] Load Libraries Success',
-    LoadLibrariesFail = '[Library] Load Libraries Fail',
+    LOAD_LIBRARIES = '[Library] Load Libraries',
+    LOAD_LIBRARIES_SUCCESS = '[Library] Load Libraries Success',
+    LOAD_LIBRARIES_FAIL = '[Library] Load Libraries Fail',
 
-    CreateLibrary = '[Library] Create Library',
-    CreateLibrarySuccess = '[Library] Create Library Success',
-    CreateLibraryFail = '[Library] Create Library Fail',
+    CREATE_LIBRARY = '[Library] Create Library',
+    CREATE_LIBRARY_SUCCESS = '[Library] Create Library Success',
+    CREATE_LIBRARY_FAIL = '[Library] Create Library Fail',
 
-    DeleteLibrary = '[Library] Delete Library',
-    DeleteLibrarySuccess = '[Library] Delete Library Success',
-    DeleteLibraryFail = '[Library] Delete Library Fail'
+    DELETE_LIBRARY = '[Library] Delete Library',
+    DELETE_LIBRARY_SUCCESS = '[Library] Delete Library Success',
+    DELETE_LIBRARY_FAIL = '[Library] Delete Library Fail'
 }
 
 export const loadLibraries = createAction(
-    LibraryActionTypes.LoadLibraries
+    LibraryActionTypes.LOAD_LIBRARIES
 );
 
 export const loadLibrariesSuccess = createAction(
-    LibraryActionTypes.LoadLibrariesSuccess,
-    props<{ data: Library[] }>()
+    LibraryActionTypes.LOAD_LIBRARIES_SUCCESS,
+    props<{ payload: Library[] }>()
 );
 
 export const loadLibrariesFailure = createAction(
-    LibraryActionTypes.LoadLibrariesFail,
-    props<{ error: Error | any }>()
+    LibraryActionTypes.LOAD_LIBRARIES_FAIL,
+    props<Error>()
 );
 
 export const createLibrary = createAction(
-    LibraryActionTypes.CreateLibrary,
-    props<{library: Library}>()
+    LibraryActionTypes.CREATE_LIBRARY,
+    props<{payload: Library}>()
 );
 
 export const createLibrarySuccess = createAction(
-    LibraryActionTypes.CreateLibrarySuccess
+    LibraryActionTypes.CREATE_LIBRARY_SUCCESS
 );
 
 export const createLibraryFailure = createAction(
-    LibraryActionTypes.CreateLibraryFail,
-    props<{ error: Error | any }>()
+    LibraryActionTypes.CREATE_LIBRARY_FAIL,
+    props<Error>()
 );
 
 export const deleteLibrary = createAction(
-    LibraryActionTypes.DeleteLibrary,
-    props<{libraryId: string}>()
+    LibraryActionTypes.DELETE_LIBRARY,
+    props<{payload: string}>()
 );
 
 export const deleteLibrarySuccess = createAction(
-    LibraryActionTypes.DeleteLibrarySuccess
+    LibraryActionTypes.DELETE_LIBRARY_SUCCESS
 );
 
 export const deleteLibraryFailure = createAction(
-    LibraryActionTypes.DeleteLibraryFail,
-    props<{ error: Error | any }>()
+    LibraryActionTypes.DELETE_LIBRARY_FAIL,
+    props<Error>()
 );
 
 

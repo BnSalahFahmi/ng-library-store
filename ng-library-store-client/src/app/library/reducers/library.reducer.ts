@@ -39,21 +39,21 @@ const libraryReducer = createReducer(
     on(libraryActions.loadLibraries, state => {
         return ({ ...state, isLoading: true});
     }),
-    on(libraryActions.loadLibrariesSuccess, (state, { data }) => {
-        return adapter.addAll(data, {
+    on(libraryActions.loadLibrariesSuccess, (state, { payload }) => {
+        return adapter.addAll(payload, {
             ...state,
             isLoading: false
         });
     }),
-    on(libraryActions.loadLibrariesFailure, (state, { error }) => {
+    on(libraryActions.loadLibrariesFailure, (state, error) => {
         return {
             ...state,
             isLoading: false,
             error
         };
     }),
-    on(libraryActions.createLibrary, (state, { library }) => {
-        return adapter.addOne(library, {
+    on(libraryActions.createLibrary, (state, { payload }) => {
+        return adapter.addOne(payload, {
             ...state,
             isLoading: false
         });
@@ -61,11 +61,11 @@ const libraryReducer = createReducer(
     on(libraryActions.createLibrarySuccess, state => {
         return ({ ...state, isLoading: false });
     }),
-    on(libraryActions.createLibraryFailure, (state, { error }) => {
+    on(libraryActions.createLibraryFailure, (state, error) => {
         return ({ ...state, isLoading: false, error });
     }),
-    on(libraryActions.deleteLibrary, (state, { libraryId }) => {
-        return adapter.removeOne(libraryId, {
+    on(libraryActions.deleteLibrary, (state, { payload }) => {
+        return adapter.removeOne(payload, {
             ...state,
             isLoading: false
         });
@@ -73,7 +73,7 @@ const libraryReducer = createReducer(
     on(libraryActions.deleteLibrarySuccess, (state, { }) => {
         return ({ ...state, isLoading: false});
     }),
-    on(libraryActions.deleteLibraryFailure, (state, { error }) => {
+    on(libraryActions.deleteLibraryFailure, (state, error) => {
         return ({ ...state, isLoading: false, error });
     })
 );

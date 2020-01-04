@@ -27,7 +27,7 @@ export class BookGridComponent implements OnInit {
   }
 
   handleDeleteClick(book: Book) {
-    this.store.dispatch(bookActions.deleteBook({bookId: book.id}));
+    this.store.dispatch(bookActions.deleteBook({payload: book.id}));
   }
 
 }

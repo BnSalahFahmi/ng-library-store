@@ -1,7 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { map, mergeMap, catchError } from 'rxjs/operators';
-import * as bookActions from '../actions/book.actions';
+import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
+import {
+    loadBooks,
+    loadBooksSuccess,
+    loadBooksFailure,
+    createBook,
+    createBookSuccess,
+    createBookFailure,
+    deleteBook,
+    deleteBookSuccess,
+    deleteBookFailure
+} from '../actions/book.actions';
+import { BookActionTypes } from './../actions/book.actions';
 import { BookService } from '../services/Book.service';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
@@ -22,57 +33,46 @@ export class BookEffects {
 
     LoadBooks$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
-            ofType(bookActions.loadBooks),
-            mergeMap(() =>
-                this.bookService.fetchBooks().pipe(
-                    map((data: Book[]) => {
-                        return bookActions.loadBooksSuccess({ data });
-                    }),
-                    catchError((error: Error) => {
-                        this.toastrService.error(error.message, 'Error');
-                        return of(bookActions.loadBooksFailure({ error }));
-                    })
-                )
-            )
+            ofType(BookActionTypes.LOAD_BOOKS),
+            switchMap(() => this.bookService.fetchBooks()),
+            map(books => loadBooksSuccess({ payload: books })),
+            catchError((error: Error) => {
+                this.toastrService.error(error.message, 'Error');
+                return of(loadBooksFailure(error));
+            })
         )
     );
 
     CreateBookEffect$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
-            ofType(bookActions.createBook),
-            mergeMap(payload =>
-                this.bookService.createBook(payload.book)
-                    .pipe(
-                        map(() => {
-                            this.toastrService.success('Book Saved Successfully', 'Success');
-                            this.router.navigate(['/book/list']);
-                            return bookActions.createBookSuccess({});
-                        }),
-                        catchError((error: Error) => {
-                            this.toastrService.error(error.message, 'Error');
-                            return of(bookActions.createBookFailure({ error }));
-                        })
-                    )
-            )
+            ofType(BookActionTypes.CREATE_BOOK),
+            map((action) => (action as any).payload),
+            switchMap(book => this.bookService.createBook(book)),
+            map(() => {
+                this.toastrService.success('Book Saved Successfully', 'Success');
+                this.router.navigate(['/book/list']);
+                return createBookSuccess();
+            }),
+            catchError((error: Error) => {
+                this.toastrService.error(error.message, 'Error');
+                return of(createBookFailure(error));
+            })
         )
     );
 
     DeleteBookEffect$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
-            ofType(bookActions.deleteBook),
-            mergeMap(payload =>
-                this.bookService.deleteLBook(payload.bookId)
-                    .pipe(
-                        map(() => {
-                            this.toastrService.success('Book Deleted Successfully', 'Success');
-                            return bookActions.loadBooks();
-                        }),
-                        catchError((error: Error) => {
-                            this.toastrService.error(error.message, 'Error');
-                            return of(bookActions.deleteBookFailure({ error }));
-                        })
-                    )
-            )
+            ofType(BookActionTypes.DELETE_BOOK),
+            map((action) => (action as any).payload),
+            switchMap(bookId => this.bookService.deleteLBook(bookId)),
+            map(() => {
+                this.toastrService.success('Book Removed Successfully', 'Success');
+                return deleteBookSuccess();
+            }),
+            catchError((error: Error) => {
+                this.toastrService.error(error.message, 'Error');
+                return of(deleteBookFailure(error));
+            })
         )
     );
 }

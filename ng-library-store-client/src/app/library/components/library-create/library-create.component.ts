@@ -28,7 +28,7 @@ export class LibraryCreateComponent implements OnInit {
   }
 
   handleSaveClick() {
-    this.store.dispatch(libraryActions.createLibrary({library: this.library}));
+    this.store.dispatch(libraryActions.createLibrary({payload: this.library}));
   }
 
   handleResetClick() {

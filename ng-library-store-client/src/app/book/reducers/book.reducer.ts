@@ -1,7 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import * as bookActions from '../actions/book.actions';
-import { Book } from '../models/book.model';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { Book } from '../models/Book.model';
 
 export const adapter: EntityAdapter<Book> = createEntityAdapter<Book>({
     sortComparer: sortByCreationDate
@@ -39,21 +39,21 @@ const bookReducer = createReducer(
     on(bookActions.loadBooks, state => {
         return ({ ...state, isLoading: true, errorMessage: null });
     }),
-    on(bookActions.loadBooksSuccess, (state, { data }) => {
-        return adapter.addAll(data, {
+    on(bookActions.loadBooksSuccess, (state, { payload }) => {
+        return adapter.addAll(payload, {
             ...state,
             isLoading: false
         });
     }),
-    on(bookActions.loadBooksFailure, (state, { error }) => {
+    on(bookActions.loadBooksFailure, (state, error) => {
         return {
             ...state,
             isLoading: false,
             error
         };
     }),
-    on(bookActions.createBook, (state, { book }) => {
-        return adapter.addOne(book, {
+    on(bookActions.createBook, (state, { payload }) => {
+        return adapter.addOne(payload, {
             ...state,
             isLoading: false
         });
@@ -61,11 +61,11 @@ const bookReducer = createReducer(
     on(bookActions.createBookSuccess, (state, {}) => {
         return ({ ...state, isLoading: false, errorMessage: null });
     }),
-    on(bookActions.createBookFailure, (state, { error }) => {
+    on(bookActions.createBookFailure, (state, error) => {
         return ({ ...state, isLoading: false, error });
     }),
-    on(bookActions.deleteBook, (state, { bookId }) => {
-        return adapter.removeOne(bookId, {
+    on(bookActions.deleteBook, (state, { payload }) => {
+        return adapter.removeOne(payload, {
             ...state,
             isLoading: false
         });
@@ -73,7 +73,7 @@ const bookReducer = createReducer(
     on(bookActions.deleteBookSuccess, (state, {}) => {
         return ({ ...state, isLoading: false});
     }),
-    on(bookActions.deleteBookFailure, (state, { error }) => {
+    on(bookActions.deleteBookFailure, (state, error) => {
         return ({ ...state, isLoading: false, error });
     })
 );

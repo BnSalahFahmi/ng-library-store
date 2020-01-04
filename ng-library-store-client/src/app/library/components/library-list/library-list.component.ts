@@ -41,7 +41,7 @@ export class LibraryListComponent implements OnInit, OnDestroy {
   }
 
   handleDeleteClick(library: Library) {
-    this.store.dispatch(libraryActions.deleteLibrary({ libraryId: library.id }));
+    this.store.dispatch(libraryActions.deleteLibrary({ payload: library.id }));
   }
 
   ngOnDestroy() {
