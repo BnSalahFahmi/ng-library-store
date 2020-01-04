@@ -6,9 +6,9 @@ export enum LibraryActionTypes {
     LoadLibrariesSuccess = '[Library] Load Libraries Success',
     LoadLibrariesFail = '[Library] Load Libraries Fail',
 
-    CreateLibrary = '[Library] CreateLibrary',
-    CreateLibrarySuccess = '[Library] CreateLibrary Success',
-    CreateLibraryFail = '[Library] CreateLibrary Fail',
+    CreateLibrary = '[Library] Create Library',
+    CreateLibrarySuccess = '[Library] Create Library Success',
+    CreateLibraryFail = '[Library] Create Library Fail',
 
     DeleteLibrary = '[Library] Delete Library',
     DeleteLibrarySuccess = '[Library] Delete Library Success',

@@ -6,9 +6,9 @@ export enum BookActionTypes {
     LoadBooksSuccess = '[Book] Load Books Success',
     LoadBooksFail = '[Book] Load Books Fail',
 
-    CreateBook = '[Book] CreateBook',
-    CreateBookSuccess = '[Book] CreateBook Success',
-    CreateBookFail = '[Book] CreateBook Fail',
+    CreateBook = '[Book] Create Book',
+    CreateBookSuccess = '[Book] Create Book Success',
+    CreateBookFail = '[Book] Create Book Fail',
 
     DeleteBook = '[Book] Delete Book',
     DeleteBookSuccess = '[Book] Delete Book Success',
