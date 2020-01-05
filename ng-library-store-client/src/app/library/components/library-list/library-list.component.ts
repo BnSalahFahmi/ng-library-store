@@ -30,12 +30,12 @@ export class LibraryListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.store.dispatch(libraryActions.loadLibraries());
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
     this.subscriptions.push(this.store.select(selectLibraries).subscribe(
       data => {
         this.libraries = data;
         this.dataSource = new MatTableDataSource(data);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       }
     ));
   }

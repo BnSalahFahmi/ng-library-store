@@ -10,7 +10,7 @@
     <ng-container matColumnDef="actions">
         <th class="with-fixed-width" mat-header-cell *matHeaderCellDef> Delete</th>
         <td class="with-fixed-width" mat-cell *matCellDef="let element">
-            <button mat-icon-button aria-label="delete icon"
+            <button mat-icon-button aria-label="delete icon" name="delete"
                 (click)="handleDeleteClick(element)">
                 <mat-icon [ngStyle]="{'color': '#9E9E9E'}" aria-hidden="false" aria-label="Example delete icon">delete
                 </mat-icon>
