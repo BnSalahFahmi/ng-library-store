@@ -34,7 +34,7 @@ export class BookCreateComponent implements OnInit, OnDestroy {
   loading$: Observable<boolean>;
   error$: Observable<string>;
 
-  constructor(private store: Store<fromBook.State>) {}
+  constructor(private store: Store<fromBook.State>) { }
 
   ngOnInit() {
     this.store.dispatch(libraryActions.loadLibraries());
@@ -82,11 +82,13 @@ export class BookCreateComponent implements OnInit, OnDestroy {
   }
 
   handleSaveClick() {
-    this.libraryCtrl.value.forEach(element => {
-      this.book.libraries.push(element);
-    });
+    if (this.libraryCtrl.value) {
+      this.libraryCtrl.value.forEach(element => {
+        this.book.libraries.push(element);
+      });
+    }
     this.book.creationDate = new Date();
-    this.store.dispatch(bookActions.createBook({payload: this.book}));
+    this.store.dispatch(bookActions.createBook({ payload: this.book }));
   }
 
   handleResetClick() {
