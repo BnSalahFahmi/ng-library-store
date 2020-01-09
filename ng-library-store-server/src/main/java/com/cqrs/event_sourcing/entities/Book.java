@@ -1,6 +1,7 @@
 package com.cqrs.event_sourcing.entities;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
+@Getter
 public class Book {
 
     @Id

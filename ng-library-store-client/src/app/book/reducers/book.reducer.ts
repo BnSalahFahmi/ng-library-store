@@ -25,11 +25,13 @@ export function sortByCreationDate(ob1: Book, ob2: Book): number {
 }
 
 export interface State extends EntityState<Book> {
+    selectedBook: Book | null;
     isLoading: boolean;
     error?: Error | any;
 }
 
 export const initialState: State = adapter.getInitialState({
+    selectedBook: null,
     isLoading: false,
     error: null
 });
@@ -59,9 +61,19 @@ const bookReducer = createReducer(
         });
     }),
     on(bookActions.createBookSuccess, (state, {}) => {
-        return ({ ...state, isLoading: false, errorMessage: null });
+        return ({ ...state, isLoading: false});
     }),
     on(bookActions.createBookFailure, (state, error) => {
+        return ({ ...state, isLoading: false, error });
+    }),
+    on(bookActions.viewBook, (state, { payload }) => {
+        return { ...state, selectedId: payload, loading: true };
+    }),
+    on(bookActions.viewBookSuccess, (state, {payload}) => {
+        debugger;
+        return ({ ...state, selectedBook: payload, isLoading: false});
+    }),
+    on(bookActions.viewBookFailure, (state, error) => {
         return ({ ...state, isLoading: false, error });
     }),
     on(bookActions.deleteBook, (state, { payload }) => {

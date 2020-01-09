@@ -1,0 +1,32 @@
+[
+    {
+        "id": "4e54fbb5-ef31-4893-b784-3b5048d72407",
+        "name": "BNF Richelieu Site",
+        "address": "58 Rue de Richelieu, 75002 Paris",
+        "creationDate": "10-12-2019"
+    },
+    {
+        "id": "a189da17-deb0-4854-a037-b62ae4b9b699",
+        "name": "Library Forney",
+        "address": "1 Rue du Figuier, 75004 Paris",
+        "creationDate": "10-12-2019"
+    },
+    {
+        "id": "b353a0c5-9861-4b1b-978f-00237ef1a160",
+        "name": "Historical Library of the City of Paris",
+        "address": "24 Rue Pavée, 75004 Paris",
+        "creationDate": "10-12-2019"
+    },
+    {
+        "id": "83604298-f10d-4129-b510-2d45a0eb2427",
+        "name": "Bibliothèque Mazarine",
+        "address": "23 Quai de Conti, 75006 Paris",
+        "creationDate": "10-12-2019"
+    },
+    {
+        "id": "8b3c4570-ca60-4b9d-89bc-6abccc62a606",
+        "name": "Cabinet des Médailles Paris",
+        "address": "75004 Paris",
+        "creationDate": "10-12-2019"
+    }
+]

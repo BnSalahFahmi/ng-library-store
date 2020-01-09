@@ -8,4 +8,5 @@ import java.util.concurrent.CompletableFuture;
 public interface BookQueryService {
 
     CompletableFuture<List<BookDTO>> getAllBooks();
+    CompletableFuture<BookDTO> getBook(String id);
 }

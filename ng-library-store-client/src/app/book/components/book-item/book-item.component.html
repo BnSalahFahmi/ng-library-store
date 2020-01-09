@@ -1,0 +1,19 @@
+<mat-card class="book-card">
+    <img mat-card-image src="{{book.urlPhoto}}">
+    <span class="book-title">{{book.name}}</span>
+    <mat-card-content>
+        <p class="book-desc">
+            {{book.description}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions class="mat-card-actions">
+        <button mat-button class="mat-button" (click)="handleViewClick(book)"><span class="mat-button-wrapper"> <i
+                    class="material-icons">search</i></span>
+            <div class="mat-button-ripple mat-ripple"></div>
+        </button>
+        <button mat-button class="mat-button" (click)="handleDeleteClick(book)"><span class="mat-button-wrapper"> <i
+                    class="material-icons">delete_forever</i></span>
+            <div class="mat-button-ripple mat-ripple"></div>
+        </button>
+    </mat-card-actions>
+</mat-card>

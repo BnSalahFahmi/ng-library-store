@@ -9,6 +9,11 @@ export const selectBooks = createSelector(
   (state: BookState) => Object.values(state.entities)
 );
 
+export const selectSelectedBook = createSelector(
+  getBookState,
+  (state: BookState) => state.selectedBook
+);
+
 export const selectLoading = createSelector(
   getBookState,
   (state: BookState) => state.isLoading

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import * as fromBooks from './../../reducers/book.reducer';
+import * as fromBooks from '../../reducers/book.reducer';
 import { BookGridComponent } from './book-grid.component';
 import { Store } from '@ngrx/store';
 import { Book } from '../../models/Book.model';

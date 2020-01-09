@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as fromBook from '../../reducers/book.reducer';
 import { Book } from '../../models/book.model';
 import { ROUTE_ANIMATIONS_ELEMENTS } from 'src/app/shared/animations/route.animations';
-import * as bookActions from './../../actions/book.actions';
+import * as bookActions from '../../actions/book.actions';
 import { Store } from '@ngrx/store';
 import { selectBooks } from '../../selectors/book.selectors';
 import { Observable } from 'rxjs';
@@ -24,10 +24,6 @@ export class BookGridComponent implements OnInit {
 
   ngOnInit() {
     this.books$ = this.store.select(selectBooks);
-  }
-
-  handleDeleteClick(book: Book) {
-    this.store.dispatch(bookActions.deleteBook({payload: book.id}));
   }
 
 }

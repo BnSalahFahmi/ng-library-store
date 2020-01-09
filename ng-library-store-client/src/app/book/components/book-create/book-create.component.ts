@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
-import { ROUTE_ANIMATIONS_ELEMENTS } from 'src/app/shared/animations/route.animations';
 import { Observable, ReplaySubject, Subject } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -19,8 +18,6 @@ import { MatSelect } from '@angular/material/select';
   styleUrls: ['./book-create.component.scss']
 })
 export class BookCreateComponent implements OnInit, OnDestroy {
-
-  routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
 
   @ViewChild('multiSelect', { static: true }) multiSelect: MatSelect;
 

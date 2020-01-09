@@ -1,0 +1,29 @@
+[
+    {
+        "id": "0f2a1618-f90d-4c13-9412-63a26c98747e",
+        "name": "Code Complete: A Practical Handbook of Software Construction",
+        "description": "Widely considered one of the best practical guides to programming, Steve McConnell’s original CODE COMPLETE has been helping developers write better software for more than a decade",
+        "author": "Steve McConnell",
+        "urlPhoto": "https://images-na.ssl-images-amazon.com/images/I/514Fchkr9WL._AC_SX368_.jpg",
+        "creationDate": "10-12-2019",
+        "libraries": []
+    },
+    {
+        "id": "a18fa48f-62ce-4157-89af-075d794cfe31",
+        "name": "Release It!: Design and Deploy Production-Ready Software",
+        "description": "A single dramatic software failure can cost a company millions of dollars - but can be avoided with simple changes to design and architecture",
+        "author": "Michael Nygard",
+        "urlPhoto": "https://images-na.ssl-images-amazon.com/images/I/711kreNLLNL._AC_SX368_.jpg",
+        "creationDate": "10-12-2019",
+        "libraries": []
+    },
+    {
+        "id": "ea26fc19-7fc8-467c-8baf-c8128d0cf1ea",
+        "name": "Test Driven Development",
+        "description": "Follows two TDD projects from start to finish, illustrating techniques programmers can use to increase the quality of their work",
+        "author": "Kent Beck",
+        "urlPhoto": "https://images-na.ssl-images-amazon.com/images/I/41pO5GqNtzL._AC_SX368_.jpg",
+        "creationDate": "10-12-2019",
+        "libraries": []
+    }
+]

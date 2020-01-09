@@ -5,6 +5,7 @@ import com.cqrs.event_sourcing.entities.Book;
 import com.cqrs.event_sourcing.entities.Library;
 import com.cqrs.event_sourcing.events.BookCreatedEvent;
 import com.cqrs.event_sourcing.events.BookDeletedEvent;
+import com.cqrs.event_sourcing.queries.GetBookQuery;
 import com.cqrs.event_sourcing.queries.GetBooksQuery;
 import com.cqrs.event_sourcing.repositories.BookRepository;
 import com.cqrs.event_sourcing.repositories.LibraryRepository;
@@ -58,7 +59,6 @@ public class BookProjection {
             bookRepository.deleteById(event.getBookId());
         }
     }
-
     @QueryHandler
     public List<BookDTO> on(GetBooksQuery query){
         logger.debug("[Query][Books] Handle query: {}", query);
@@ -66,5 +66,15 @@ public class BookProjection {
             return new BookDTO(book.getId(), book.getName(), book.getDescription(), book.getUrlPhoto(), new HashSet<>());
         }).collect(Collectors.toList());
         return books;
+    }
+
+    @QueryHandler
+    public BookDTO on(GetBookQuery query){
+        logger.debug("[Query][Book] Handle query: {}", query);
+        Book book = bookRepository.findById(query.getBookId()).orElse(null);
+        if(book != null)
+            return new BookDTO(book.getId(), book.getName(), book.getDescription(), book.getUrlPhoto(), new HashSet<>());
+        else
+            return null;
     }
 }

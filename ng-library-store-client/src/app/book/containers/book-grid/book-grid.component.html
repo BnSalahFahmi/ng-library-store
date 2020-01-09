@@ -1,0 +1,8 @@
+<div class="books-container row col-lg-12" *ngIf="(books$ | async) as books" [ngClass]="routeAnimationsElements">
+    <div *ngFor="let book of books" class="col-lg-3">
+        <book-item [book]="book"></book-item>
+    </div>
+    <div class="empty-data" *ngIf="books.length == 0">
+        <span>No Data Found</span>
+    </div>
+</div>

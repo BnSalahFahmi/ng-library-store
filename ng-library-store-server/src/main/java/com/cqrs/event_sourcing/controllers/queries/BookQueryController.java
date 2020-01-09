@@ -6,10 +6,7 @@ import com.cqrs.event_sourcing.entities.Library;
 import com.cqrs.event_sourcing.services.queries.BookQueryService;
 import com.cqrs.event_sourcing.services.queries.LibraryQueryService;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -27,7 +24,10 @@ public class BookQueryController {
     }
 
     @GetMapping("")
-    public CompletableFuture<List<BookDTO>> fetchLibraries() {
+    public CompletableFuture<List<BookDTO>> fetchBooks() {
         return this.bookQueryService.getAllBooks();
     }
+
+    @GetMapping("/{id}")
+    public CompletableFuture<BookDTO> getBook(@PathVariable String id) { return this.bookQueryService.getBook(id); }
 }

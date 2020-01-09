@@ -6,14 +6,14 @@
         <mat-card-content>
             <div class="form-container" [ngClass]="routeAnimationsElements">
                 <mat-form-field>
-                    <input matInput placeholder="Name" name="name" id="name" [(ngModel)]="library.name" #name="ngModel"
+                    <input matInput placeholder="Name" name="name" [(ngModel)]="library.name" #name="ngModel"
                         [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required />
                     <mat-error *ngIf="f.submitted && name.invalid && name.errors.required">Library Name is required
                     </mat-error>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <textarea matInput placeholder="Address" name="address" id="address" [(ngModel)]="library.address"
+                    <textarea matInput placeholder="Address" name="address" [(ngModel)]="library.address"
                         #address="ngModel" [ngClass]="{ 'is-invalid': f.submitted && address.invalid }"
                         required></textarea>
                     <mat-error *ngIf="f.submitted && address.invalid && address.errors.required">Library Address is

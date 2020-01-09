@@ -10,6 +10,10 @@ export enum BookActionTypes {
     CREATE_BOOK_SUCCESS = '[Book] Create Book Success',
     CREATE_BOOK_FAIL = '[Book] Create Book Fail',
 
+    VIEW_BOOK = '[Book] View Book',
+    VIEW_BOOK_SUCCESS = '[Book] View Book Success',
+    VIEW_BOOK_FAIL = '[Book] View Book Fail',
+
     DELETE_BOOK = '[Book] Delete Book',
     DELETE_BOOK_SUCCESS = '[Book] Delete Book Success',
     DELETE_BOOK_FAIL = '[Book] Delete Book Fail'
@@ -40,6 +44,21 @@ export const createBookSuccess = createAction(
 
 export const createBookFailure = createAction(
     BookActionTypes.CREATE_BOOK_FAIL,
+    props<Error>()
+);
+
+export const viewBook = createAction(
+    BookActionTypes.VIEW_BOOK,
+    props<{payload: String}>()
+);
+
+export const viewBookSuccess = createAction(
+    BookActionTypes.VIEW_BOOK_SUCCESS,
+    props<{payload: Book}>()
+);
+
+export const viewBookFailure = createAction(
+    BookActionTypes.VIEW_BOOK_FAIL,
     props<Error>()
 );
 

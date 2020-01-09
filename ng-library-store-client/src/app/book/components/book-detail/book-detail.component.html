@@ -1,0 +1,20 @@
+<mat-card class="form-container-card">
+    <mat-card-header>
+        <mat-card-title>Book Details</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="form-container" [ngClass]="routeAnimationsElements">
+            <table *ngIf="selectedBook$ | async as book">
+                <td width="50%">
+                    <img height="70%" [src]="book.urlPhoto">
+                </td>
+                <td width="50%">
+                    <h1>{{book.name}}</h1>
+                    <p> By {{book.author}} </p>
+                    <div [innerHtml]="book.description"></div>
+                </td>
+            </table>
+        </div>
+    </mat-card-content>
+</mat-card>
+<app-loader *ngIf="loading$ | async"></app-loader>

@@ -10,7 +10,9 @@ import {
     createBookFailure,
     deleteBook,
     deleteBookSuccess,
-    deleteBookFailure
+    deleteBookFailure,
+    viewBookSuccess,
+    viewBookFailure
 } from '../actions/book.actions';
 import { BookActionTypes } from './../actions/book.actions';
 import { BookService } from '../services/Book.service';
@@ -56,6 +58,22 @@ export class BookEffects {
             catchError((error: Error) => {
                 this.toastrService.error(error.message, 'Error');
                 return of(createBookFailure(error));
+            })
+        )
+    );
+
+    ViewBookEffect$: Observable<Action> = createEffect(() =>
+        this.actions$.pipe(
+            ofType(BookActionTypes.VIEW_BOOK),
+            map((action) => (action as any).payload),
+            switchMap(bookId => this.bookService.fetchBook(bookId)),
+            map((book) => {
+                debugger;
+                return viewBookSuccess({ payload: book });
+            }),
+            catchError((error: Error) => {
+                this.toastrService.error(error.message, 'Error');
+                return of(viewBookFailure(error));
             })
         )
     );
