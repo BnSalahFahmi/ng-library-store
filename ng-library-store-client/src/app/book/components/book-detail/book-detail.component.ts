@@ -23,7 +23,7 @@ export class BookDetailComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.store.dispatch(bookActions.viewBook({ payload: params['id'] }));
+      this.store.dispatch(bookActions.viewBook({ bookId: params['id'] }));
     })
   }
 

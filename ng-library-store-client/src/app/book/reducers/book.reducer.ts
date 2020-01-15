@@ -39,54 +39,49 @@ export const initialState: State = adapter.getInitialState({
 const bookReducer = createReducer(
     initialState,
     on(bookActions.loadBooks, state => {
-        return ({ ...state, isLoading: true, errorMessage: null });
+        return ({ ...state, isLoading: true });
     }),
-    on(bookActions.loadBooksSuccess, (state, { payload }) => {
-        return adapter.addAll(payload, {
+    on(bookActions.loadBooksSuccess, (state, { books }) => {
+        return adapter.addAll(books, {
             ...state,
             isLoading: false
         });
     }),
     on(bookActions.loadBooksFailure, (state, error) => {
-        return {
-            ...state,
-            isLoading: false,
-            error
-        };
+        return ({ ...state, isLoading: false, error: error.error });
     }),
-    on(bookActions.createBook, (state, { payload }) => {
-        return adapter.addOne(payload, {
-            ...state,
-            isLoading: false
+    on(bookActions.createBook, (state, { book }) => {
+        return ({ ...state, isLoading: true });
+    }),
+    on(bookActions.createBookSuccess, (state, { book }) => {
+        return adapter.addOne(book, {
+          ...state,
+          isLoading: false
         });
-    }),
-    on(bookActions.createBookSuccess, (state, {}) => {
-        return ({ ...state, isLoading: false});
     }),
     on(bookActions.createBookFailure, (state, error) => {
-        return ({ ...state, isLoading: false, error });
+        return ({ ...state, isLoading: false, error: error.error });
     }),
-    on(bookActions.viewBook, (state, { payload }) => {
-        return { ...state, selectedId: payload, loading: true };
+    on(bookActions.viewBook, (state, { bookId }) => {
+        return { ...state, selectedId: bookId, loading: true };
     }),
-    on(bookActions.viewBookSuccess, (state, {payload}) => {
-        debugger;
-        return ({ ...state, selectedBook: payload, isLoading: false});
+    on(bookActions.viewBookSuccess, (state, { bookId }) => {
+        return ({ ...state, selectedBook: bookId, isLoading: false});
     }),
     on(bookActions.viewBookFailure, (state, error) => {
-        return ({ ...state, isLoading: false, error });
+        return ({ ...state, isLoading: false, error: error.error });
     }),
-    on(bookActions.deleteBook, (state, { payload }) => {
-        return adapter.removeOne(payload, {
-            ...state,
-            isLoading: false
+    on(bookActions.deleteBook, (state, { bookId }) => {
+        return ({ ...state, isLoading: true });
+    }),
+    on(bookActions.deleteBookSuccess, (state, { bookId }) => {
+        return adapter.removeOne(bookId, {
+          ...state,
+          isLoading: false
         });
     }),
-    on(bookActions.deleteBookSuccess, (state, {}) => {
-        return ({ ...state, isLoading: false});
-    }),
     on(bookActions.deleteBookFailure, (state, error) => {
-        return ({ ...state, isLoading: false, error });
+        return ({ ...state, isLoading: false, error: error.error});
     })
 );
 

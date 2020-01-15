@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as fromBook from '../../reducers/book.reducer';
-import { Book } from '../../models/book.model';
 import { ROUTE_ANIMATIONS_ELEMENTS } from 'src/app/shared/animations/route.animations';
 import * as bookActions from '../../actions/book.actions';
 import { Store } from '@ngrx/store';
 import { selectBooks } from '../../selectors/book.selectors';
 import { Observable } from 'rxjs';
+import { Book } from '../../models/Book.model';
 
 @Component({
   selector: 'book-grid',

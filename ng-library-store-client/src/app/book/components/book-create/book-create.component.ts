@@ -85,7 +85,7 @@ export class BookCreateComponent implements OnInit, OnDestroy {
       });
     }
     this.book.creationDate = new Date();
-    this.store.dispatch(bookActions.createBook({ payload: this.book }));
+    this.store.dispatch(bookActions.createBook({ book: this.book }));
   }
 
   handleResetClick() {

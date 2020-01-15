@@ -25,54 +25,56 @@ export const loadBooks = createAction(
 
 export const loadBooksSuccess = createAction(
     BookActionTypes.LOAD_BOOKS_SUCCESS,
-    props<{ payload: Book[] }>()
+    props<{ books: Book[] }>()
 );
 
 export const loadBooksFailure = createAction(
     BookActionTypes.LOAD_BOOKS_FAIL,
-    props<Error>()
+    props<{ error: Error }>()
 );
 
 export const createBook = createAction(
     BookActionTypes.CREATE_BOOK,
-    props<{payload: Book}>()
+    props<{ book: Book }>()
 );
 
 export const createBookSuccess = createAction(
-    BookActionTypes.CREATE_BOOK_SUCCESS
+    BookActionTypes.CREATE_BOOK_SUCCESS,
+    props<{ book: Book }>()
 );
 
 export const createBookFailure = createAction(
     BookActionTypes.CREATE_BOOK_FAIL,
-    props<Error>()
+    props<{ error: Error }>()
 );
 
 export const viewBook = createAction(
     BookActionTypes.VIEW_BOOK,
-    props<{payload: String}>()
+    props<{ bookId: string }>()
 );
 
 export const viewBookSuccess = createAction(
     BookActionTypes.VIEW_BOOK_SUCCESS,
-    props<{payload: Book}>()
+    props<{ bookId: Book }>()
 );
 
 export const viewBookFailure = createAction(
     BookActionTypes.VIEW_BOOK_FAIL,
-    props<Error>()
+    props<{ error: Error }>()
 );
 
 export const deleteBook = createAction(
     BookActionTypes.DELETE_BOOK,
-    props<{payload: string}>()
+    props<{ bookId: string }>()
 );
 
 export const deleteBookSuccess = createAction(
     BookActionTypes.DELETE_BOOK_SUCCESS,
+    props<{ bookId: string }>()
 );
 
 export const deleteBookFailure = createAction(
     BookActionTypes.DELETE_BOOK_FAIL,
-    props<Error>()
+    props<{ error: Error }>()
 );
 

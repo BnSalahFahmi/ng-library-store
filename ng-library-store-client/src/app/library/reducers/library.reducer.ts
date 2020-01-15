@@ -39,42 +39,38 @@ const libraryReducer = createReducer(
     on(libraryActions.loadLibraries, state => {
         return ({ ...state, isLoading: true});
     }),
-    on(libraryActions.loadLibrariesSuccess, (state, { payload }) => {
-        return adapter.addAll(payload, {
+    on(libraryActions.loadLibrariesSuccess, (state, { libraries }) => {
+        return adapter.addAll(libraries, {
             ...state,
             isLoading: false
         });
     }),
     on(libraryActions.loadLibrariesFailure, (state, error) => {
-        return {
-            ...state,
-            isLoading: false,
-            error
-        };
+        return { ...state, isLoading: false, error: error.error };
     }),
-    on(libraryActions.createLibrary, (state, { payload }) => {
-        return adapter.addOne(payload, {
-            ...state,
-            isLoading: false
-        });
+    on(libraryActions.createLibrary, (state, { library }) => {
+      return ({ ...state, isLoading: true });
     }),
-    on(libraryActions.createLibrarySuccess, state => {
-        return ({ ...state, isLoading: false });
+    on(libraryActions.createLibrarySuccess, (state, { library }) => {
+      return adapter.addOne(library, {
+        ...state,
+        isLoading: false
+      });
     }),
     on(libraryActions.createLibraryFailure, (state, error) => {
-        return ({ ...state, isLoading: false, error });
+        return ({ ...state, isLoading: false, error: error.error });
     }),
-    on(libraryActions.deleteLibrary, (state, { payload }) => {
-        return adapter.removeOne(payload, {
-            ...state,
-            isLoading: false
-        });
+    on(libraryActions.deleteLibrary, (state, { libraryId }) => {
+      return ({ ...state, isLoading: true });
     }),
-    on(libraryActions.deleteLibrarySuccess, (state, { }) => {
-        return ({ ...state, isLoading: false});
+    on(libraryActions.deleteLibrarySuccess, (state, { libraryId }) => {
+      return adapter.removeOne(libraryId, {
+        ...state,
+        isLoading: false
+      });
     }),
     on(libraryActions.deleteLibraryFailure, (state, error) => {
-        return ({ ...state, isLoading: false, error });
+        return ({ ...state, isLoading: false, error: error.error });
     })
 );
 

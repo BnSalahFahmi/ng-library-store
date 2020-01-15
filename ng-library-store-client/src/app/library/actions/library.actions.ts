@@ -21,40 +21,42 @@ export const loadLibraries = createAction(
 
 export const loadLibrariesSuccess = createAction(
     LibraryActionTypes.LOAD_LIBRARIES_SUCCESS,
-    props<{ payload: Library[] }>()
+    props<{ libraries: Library[] }>()
 );
 
 export const loadLibrariesFailure = createAction(
     LibraryActionTypes.LOAD_LIBRARIES_FAIL,
-    props<Error>()
+    props<{ error: Error }>()
 );
 
 export const createLibrary = createAction(
     LibraryActionTypes.CREATE_LIBRARY,
-    props<{payload: Library}>()
+    props<{ library: Library }>()
 );
 
 export const createLibrarySuccess = createAction(
-    LibraryActionTypes.CREATE_LIBRARY_SUCCESS
+    LibraryActionTypes.CREATE_LIBRARY_SUCCESS,
+    props<{ library: Library }>()
 );
 
 export const createLibraryFailure = createAction(
     LibraryActionTypes.CREATE_LIBRARY_FAIL,
-    props<Error>()
+    props<{ error: Error }>()
 );
 
 export const deleteLibrary = createAction(
     LibraryActionTypes.DELETE_LIBRARY,
-    props<{payload: string}>()
+    props<{ libraryId: string }>()
 );
 
 export const deleteLibrarySuccess = createAction(
-    LibraryActionTypes.DELETE_LIBRARY_SUCCESS
+    LibraryActionTypes.DELETE_LIBRARY_SUCCESS,
+    props<{ libraryId: string }>()
 );
 
 export const deleteLibraryFailure = createAction(
     LibraryActionTypes.DELETE_LIBRARY_FAIL,
-    props<Error>()
+    props<{ error: Error }>()
 );
 
 

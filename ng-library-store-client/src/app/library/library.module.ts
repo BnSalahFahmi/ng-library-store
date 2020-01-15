@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { LibraryRoutingModule } from './library-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { LibraryCreateComponent } from './components/library-create/library-create.component';
-import { LibraryDetailComponent } from './components/library-detail/library-detail.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { LibraryService } from './services/library.service';
@@ -17,7 +16,6 @@ import { LibraryRootComponent } from './containers/library-root/library-root.com
 @NgModule({
   declarations: [
     LibraryCreateComponent,
-    LibraryDetailComponent,
     LibraryListComponent,
     LibraryRootComponent
   ],
@@ -32,7 +30,6 @@ import { LibraryRootComponent } from './containers/library-root/library-root.com
   ],
   exports: [
     LibraryCreateComponent,
-    LibraryDetailComponent,
     LibraryListComponent,
     LibraryRootComponent
   ],

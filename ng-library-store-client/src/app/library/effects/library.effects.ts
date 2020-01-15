@@ -16,7 +16,6 @@ import { LibraryActionTypes } from './../actions/library.actions';
 import { LibraryService } from '../services/library.service';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
-import { Library } from '../models/library.model';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 
@@ -35,10 +34,10 @@ export class LibraryEffects {
         this.actions$.pipe(
             ofType(LibraryActionTypes.LOAD_LIBRARIES),
             switchMap(() => this.libraryService.fetchLibraries()),
-            map(libraries => loadLibrariesSuccess({ payload: libraries })),
+            map(libraries => loadLibrariesSuccess({ libraries })),
             catchError((error: Error) => {
                 this.toastrService.error(error.message, 'Error');
-                return of(loadLibrariesFailure(error));
+                return of(loadLibrariesFailure({ error }));
             })
         )
     );
@@ -48,14 +47,14 @@ export class LibraryEffects {
             ofType(LibraryActionTypes.CREATE_LIBRARY),
             map((action) => (action as any).payload),
             switchMap(library => this.libraryService.createLibrary(library)),
-            map(() => {
+            map(library => {
                 this.toastrService.success('Library Saved Successfully', 'Success');
                 this.router.navigate(['/library/list']);
-                return createLibrarySuccess();
+                return createLibrarySuccess({ library });
             }),
             catchError((error: Error) => {
                 this.toastrService.error(error.message, 'Error');
-                return of(deleteLibraryFailure(error));
+                return of(deleteLibraryFailure({ error}));
             })
         )
     );
@@ -65,13 +64,13 @@ export class LibraryEffects {
             ofType(LibraryActionTypes.DELETE_LIBRARY),
             map((action) => (action as any).payload),
             switchMap(libraryId => this.libraryService.deleteLibrary(libraryId)),
-            map(() => {
+            map(libraryId => {
                 this.toastrService.success('Library Removed Successfully', 'Success');
-                return deleteLibrarySuccess();
+                return deleteLibrarySuccess({ libraryId });
             }),
             catchError((error: Error) => {
                 this.toastrService.error(error.message, 'Error');
-                return of(deleteLibraryFailure(error));
+                return of(deleteLibraryFailure({ error }));
             })
         )
     );

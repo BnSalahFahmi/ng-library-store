@@ -37,10 +37,10 @@ export class BookEffects {
         this.actions$.pipe(
             ofType(BookActionTypes.LOAD_BOOKS),
             switchMap(() => this.bookService.fetchBooks()),
-            map(books => loadBooksSuccess({ payload: books })),
+            map(books => loadBooksSuccess({ books })),
             catchError((error: Error) => {
                 this.toastrService.error(error.message, 'Error');
-                return of(loadBooksFailure(error));
+                return of(loadBooksFailure({ error }));
             })
         )
     );
@@ -50,14 +50,14 @@ export class BookEffects {
             ofType(BookActionTypes.CREATE_BOOK),
             map((action) => (action as any).payload),
             switchMap(book => this.bookService.createBook(book)),
-            map(() => {
+            map(book => {
                 this.toastrService.success('Book Saved Successfully', 'Success');
                 this.router.navigate(['/book/list']);
-                return createBookSuccess();
+                return createBookSuccess({ book });
             }),
             catchError((error: Error) => {
                 this.toastrService.error(error.message, 'Error');
-                return of(createBookFailure(error));
+                return of(createBookFailure({ error }));
             })
         )
     );
@@ -67,13 +67,12 @@ export class BookEffects {
             ofType(BookActionTypes.VIEW_BOOK),
             map((action) => (action as any).payload),
             switchMap(bookId => this.bookService.fetchBook(bookId)),
-            map((book) => {
-                debugger;
-                return viewBookSuccess({ payload: book });
+            map(bookId => {
+                return viewBookSuccess({ bookId });
             }),
             catchError((error: Error) => {
                 this.toastrService.error(error.message, 'Error');
-                return of(viewBookFailure(error));
+                return of(viewBookFailure({ error }));
             })
         )
     );
@@ -83,13 +82,13 @@ export class BookEffects {
             ofType(BookActionTypes.DELETE_BOOK),
             map((action) => (action as any).payload),
             switchMap(bookId => this.bookService.deleteLBook(bookId)),
-            map(() => {
+            map(bookId => {
                 this.toastrService.success('Book Removed Successfully', 'Success');
-                return deleteBookSuccess();
+                return deleteBookSuccess({ bookId });
             }),
             catchError((error: Error) => {
                 this.toastrService.error(error.message, 'Error');
-                return of(deleteBookFailure(error));
+                return of(deleteBookFailure({ error }));
             })
         )
     );
