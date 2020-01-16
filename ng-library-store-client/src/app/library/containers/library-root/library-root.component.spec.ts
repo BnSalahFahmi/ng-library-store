@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppModule } from 'src/app/app.module';
 
-fdescribe('LibraryRootComponent', () => {
+describe('LibraryRootComponent', () => {
   let component: LibraryRootComponent;
   let fixture: ComponentFixture<LibraryRootComponent>;
   let store: jasmine.SpyObj<Store<fromLibrary.State>>;

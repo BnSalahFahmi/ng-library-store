@@ -39,14 +39,16 @@ describe('LibraryListComponent', () => {
 
     const libraries: Library[] = [
       {
-        id: 'some_id_1',
-        name: 'some_name_1',
-        address: 'some_address_1'
+        id: '4e54fbb5-ef31-4893-b784-3b5048d72407',
+        name: 'BNF Richelieu Site',
+        address: '58 Rue de Richelieu, 75002 Paris',
+        creationDate: new Date('01-04-2010')
       },
       {
-        id: 'some_id_2',
-        name: 'some_name_2',
-        address: 'some_address_2'
+        id: 'a189da17-deb0-4854-a037-b62ae4b9b699',
+        name: 'Library Forney',
+        address: '1 Rue du Figuier, 75004 Paris',
+        creationDate: new Date('05-12-2013')
       }
     ];
 
@@ -70,15 +72,16 @@ describe('LibraryListComponent', () => {
     component.ngOnInit();
 
     // Then
-    expect(store.dispatch).toHaveBeenCalledWith(loadLibraries({}));
+    expect(store.dispatch).toHaveBeenCalledWith(loadLibraries());
   });
 
   it('should send delete library when delete click', () => {
     // Given
     const library: Library = {
-      id: 'some_id',
-      name: 'some_name',
-      address: 'some_address'
+      id: '8b3c4570-ca60-4b9d-89bc-6abccc62a606',
+      name: 'Cabinet des Médailles Paris',
+      address: '75004 Paris',
+      creationDate: new Date('10-12-2015')
     };
 
     // When

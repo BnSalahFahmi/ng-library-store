@@ -3,6 +3,7 @@ import * as fromBooks from '../../reducers/book.reducer';
 import { BookGridComponent } from './book-grid.component';
 import { Store } from '@ngrx/store';
 import { Book } from '../../models/Book.model';
+import {SharedModule} from "../../../shared/shared.module";
 
 describe('BookGridComponent', () => {
   let component: BookGridComponent;
@@ -13,7 +14,7 @@ describe('BookGridComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ BookGridComponent ],
       imports: [
-
+        SharedModule
       ],
       providers: [
         {
@@ -41,15 +42,4 @@ describe('BookGridComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should reset book on delete click', () => {
-    // Given
-    const book : Book = {
-      
-    };
-
-    // When
-    component.handleDeleteClick();
-
-    // Then
-  });
 });

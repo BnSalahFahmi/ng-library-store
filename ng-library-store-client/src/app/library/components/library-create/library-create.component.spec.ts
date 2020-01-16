@@ -3,12 +3,13 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { LibraryCreateComponent } from './library-create.component';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import SpyObj = jasmine.SpyObj;
 import * as fromLibrary from './../../reducers/library.reducer';
 import { createLibrary } from '../../actions/library.actions';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import { initLibrabry } from '../../models/library.model';
+import { initLibrabry, Library } from '../../models/library.model';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import SpyObj = jasmine.SpyObj;
 
 describe('LibraryCreateComponent', () => {
   let component: LibraryCreateComponent;
@@ -21,7 +22,8 @@ describe('LibraryCreateComponent', () => {
       declarations: [LibraryCreateComponent],
       imports: [
         FormsModule,
-        SharedModule
+        SharedModule,
+        BrowserAnimationsModule
       ],
       providers: [
         provideMockActions(() => actions),
@@ -48,26 +50,30 @@ describe('LibraryCreateComponent', () => {
 
   it('should send create library action when library credentials not empty', () => {
     // Given
-    component.library = {
-      id: 'some_id',
-      name: 'some_name',
-      address: 'some_address'
+    const library: Library = {
+      id: '8b3c4570-ca60-4b9d-89bc-6abccc62a606',
+      name: 'Cabinet des Médailles Paris',
+      address: '75004 Paris',
+      creationDate: new Date('10-12-2015')
     };
+    component.library = library;
 
     // When
     component.handleSaveClick();
 
     // Then
-    expect(store.dispatch).toHaveBeenCalledWith(createLibrary(component.library));
+    expect(store.dispatch).toHaveBeenCalledWith(createLibrary({ library: component.library }));
   });
 
   it('should reset library when reset click', () => {
     // Given
-    component.library = {
-      id: 'some_id',
-      name: 'some_name',
-      address: 'some_address'
+    const library: Library = {
+      id: '8b3c4570-ca60-4b9d-89bc-6abccc62a606',
+      name: 'Cabinet des Médailles Paris',
+      address: '75004 Paris',
+      creationDate: new Date('10-12-2015')
     };
+    component.library = library;
 
     // When
     component.handleResetClick();
