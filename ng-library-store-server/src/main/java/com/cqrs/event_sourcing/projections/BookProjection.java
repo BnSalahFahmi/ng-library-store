@@ -39,7 +39,7 @@ public class BookProjection {
     @EventHandler
     void on(BookCreatedEvent event) {
         logger.debug("About to dispatch a new command to create a new book {}", event.getBookId());
-        Book book = new Book(event.getBookId(), event.getName(), event.getDescription(), event.getUrlPath());
+        Book book = new Book(event.getBookId(), event.getName(), event.getDescription(), event.getAuthor(), event.getUrlPath());
         event.getLibraries().stream().forEach(library-> {
             Library lib = new Library(library.getId(), library.getName(), library.getAddress());
             libraryRepository.save(new Library(lib.getId(), lib.getName(),lib.getAddress(), book));
@@ -63,7 +63,7 @@ public class BookProjection {
     public List<BookDTO> on(GetBooksQuery query){
         logger.debug("[Query][Books] Handle query: {}", query);
         List <BookDTO> books = bookRepository.findAll().stream().map(book -> {
-            return new BookDTO(book.getId(), book.getName(), book.getDescription(), book.getUrlPhoto(), new HashSet<>());
+            return new BookDTO(book.getId(), book.getName(), book.getDescription(), book.getAuthor(), book.getUrlPhoto(), new HashSet<>());
         }).collect(Collectors.toList());
         return books;
     }
@@ -73,7 +73,7 @@ public class BookProjection {
         logger.debug("[Query][Book] Handle query: {}", query);
         Book book = bookRepository.findById(query.getBookId()).orElse(null);
         if(book != null)
-            return new BookDTO(book.getId(), book.getName(), book.getDescription(), book.getUrlPhoto(), new HashSet<>());
+            return new BookDTO(book.getId(), book.getName(), book.getDescription(), book.getAuthor(), book.getUrlPhoto(), new HashSet<>());
         else
             return null;
     }

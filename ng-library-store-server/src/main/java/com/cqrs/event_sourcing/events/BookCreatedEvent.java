@@ -17,6 +17,7 @@ public class BookCreatedEvent {
     private String bookId;
     private String name;
     private String description;
+    private String author;
     private String urlPath;
     private Set<LibraryDTO> libraries;
 }

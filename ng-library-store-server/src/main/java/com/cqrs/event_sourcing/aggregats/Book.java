@@ -27,6 +27,7 @@ public class Book {
     private String id;
     private String name;
     private String description;
+    private String author;
     private String urlPath;
     private Set<LibraryDTO> libraries;
 
@@ -39,9 +40,10 @@ public class Book {
     public Book(CreateBookCommand createBookCommand) {
         Assert.notNull(createBookCommand.getName(), () -> "Book name should not be null");
         Assert.notNull(createBookCommand.getDescription(), () -> "Book description should not be null");
+        Assert.notNull(createBookCommand.getAuthor(), () -> "Book author should be not null");
         Assert.notNull(createBookCommand.getUrlPhoto(), () -> "Book photo should not be null");
         apply(new BookCreatedEvent(
-                createBookCommand.getBookId(), createBookCommand.getName(), createBookCommand.getDescription(), createBookCommand.getUrlPhoto(), createBookCommand.getLibraries()
+                createBookCommand.getBookId(), createBookCommand.getName(), createBookCommand.getDescription(), createBookCommand.getAuthor(), createBookCommand.getUrlPhoto(), createBookCommand.getLibraries()
         ));
     }
 
@@ -59,6 +61,7 @@ public class Book {
         this.id = bookCreatedEvent.getBookId();
         this.name = bookCreatedEvent.getName();
         this.description = bookCreatedEvent.getDescription();
+        this.author = bookCreatedEvent.getAuthor();
         this.urlPath = bookCreatedEvent.getUrlPath();
         this.libraries = bookCreatedEvent.getLibraries();
     }

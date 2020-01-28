@@ -20,7 +20,7 @@ public class BookCommandServiceImpl implements BookCommandService {
 
     @Override
     public CompletableFuture<String> createBook(BookDTO bookDTO) {
-        CreateBookCommand command = new CreateBookCommand(RandomIdProvider.generateRandomUUID().toString(), bookDTO.getName(), bookDTO.getDescription(), bookDTO.getUrlPhoto(), bookDTO.getLibraries());
+        CreateBookCommand command = new CreateBookCommand(RandomIdProvider.generateRandomUUID().toString(), bookDTO.getName(), bookDTO.getDescription(), bookDTO.getAuthor(), bookDTO.getUrlPhoto(), bookDTO.getLibraries());
         return commandGateway.send(command);
     }
 

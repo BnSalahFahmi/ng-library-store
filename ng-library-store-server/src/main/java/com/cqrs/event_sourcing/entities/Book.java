@@ -19,15 +19,17 @@ public class Book {
     private String id;
     private String name;
     private String description;
+    private String author;
     private String urlPhoto;
 
     @ManyToMany(mappedBy = "books")
     private Set<Library> libraries = new HashSet<>();
 
-    public Book(String id, String name, String description, String urlPhoto) {
+    public Book(String id, String name, String description, String author, String urlPhoto) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.author = author;
         this.urlPhoto = urlPhoto;
     }
 }

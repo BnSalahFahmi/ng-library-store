@@ -19,6 +19,7 @@ public class CreateBookCommand {
     private String bookId;
     private String name;
     private String description;
+    private String author;
     private String urlPhoto;
     private Set<LibraryDTO> libraries;
 }
