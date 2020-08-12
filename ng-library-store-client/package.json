@@ -34,7 +34,7 @@
     "ngx-mat-select-search": "^2.1.0",
     "ngx-toastr": "^11.2.1",
     "rxjs": "~6.4.0",
-    "serialize-javascript": "^2.1.2",
+    "serialize-javascript": "^3.1.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
